@@ -1,0 +1,27 @@
+import {Equipment} from "../models/Equipment.ts";
+import {createSlice} from "@reduxjs/toolkit";
+
+const initialState: Equipment[] = [];
+
+const equipmentSlice = createSlice({
+    name: "equipments",
+    initialState,
+    reducers: {
+        addEquipment: (state, action) => {
+            state.push(action.payload);
+        },
+        updateEquipment: (state, action) => {
+            return state.map((equipment) =>
+                equipment.id === action.payload.code
+                    ? {...equipment, ...action.payload}
+                    :equipment
+            );
+        },
+        deleteEquipment: (state, action) => {
+            return state.filter((equipment) => equipment.id !== action.payload.code);
+        },
+    },
+});
+
+export const {addEquipment, updateEquipment, deleteEquipment} = equipmentSlice.actions;
+export default equipmentSlice.reducer;
