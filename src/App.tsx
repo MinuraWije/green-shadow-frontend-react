@@ -6,7 +6,7 @@ import {Vehicle} from "./pages/Vehicle.tsx";
 import React from "react";
 import {UpdateCustomer} from "./pages/UpdateCustomer.tsx";
 import {DeleteCustomer} from "./pages/DeleteCustomer.tsx";
-import Equipment from "./pages/Equipment.tsx";
+import {EquipmentPage} from "./pages/Equipment.tsx";
 
 function App() {
     const routes = createBrowserRouter([
@@ -16,7 +16,7 @@ function App() {
             children : [
                 { path : '', element : <Dashboard/>},
                 //{ path : '/vehicle', element : <Vehicle/>},
-                { path : '/equipment', element : <Equipment/>},
+                { path : '/equipment', element : <EquipmentPage/>},
                 { path : '/delete', element : <DeleteCustomer/>},
                 { path : '/update', element : <UpdateCustomer/>}
             ]
