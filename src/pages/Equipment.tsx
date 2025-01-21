@@ -89,7 +89,7 @@ export function EquipmentPage() {
 
                     <AddEquipmentModal isOpen={isAddModalOpen} onClose={() => setAddModalOpen(false)}/>
                     <UpdateEquipmentModal isOpen={isUpdateModalOpen} onClose={() => setUpdateModalOpen(false)}
-                                          selectedEquipment={selectedEquipment}/>Update Equipment
+                                          selectedEquipment={selectedEquipment}/>
 
                 </div>
             </div>
