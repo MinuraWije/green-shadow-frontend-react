@@ -1,4 +1,3 @@
-import {Equipment} from "../models/Equipment.ts";
 import {createSlice} from "@reduxjs/toolkit";
 import {Staff} from "../models/Staff.ts";
 
