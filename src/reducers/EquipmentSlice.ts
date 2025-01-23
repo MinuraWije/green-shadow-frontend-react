@@ -12,13 +12,13 @@ const equipmentSlice = createSlice({
         },
         updateEquipment: (state, action) => {
             return state.map((equipment) =>
-                equipment.id === action.payload.code
+                equipment.id === action.payload.id
                     ? {...equipment, ...action.payload}
                     :equipment
             );
         },
         deleteEquipment: (state, action) => {
-            return state.filter((equipment) => equipment.id !== action.payload.code);
+            return state.filter((equipment) => equipment.id !== action.payload.id);
         },
     },
 });
