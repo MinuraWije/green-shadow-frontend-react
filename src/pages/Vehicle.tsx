@@ -1,71 +1,100 @@
-import {useNavigate} from "react-router";
+import {useSelector} from "react-redux";
 import {useState} from "react";
-import {Customer} from "../models/Customer.ts";
-import {Modal} from "../components/Modal";
-import {useDispatch} from "react-redux";
-import vehicleSlice, {addVehicle, deleteVehicle, updateVehicle} from "../reducers/VehicleSlice.ts";
+import {Vehicle} from "../models/Vehicle.ts";
+import AddVehicleModal from "../components/AddVehicle.tsx";
+import UpdateVehicleModal from "../components/UpdateVehicle.tsx";
 
-export function Vehicle() {
+export function VehiclePage() {
+    const [selectedVehicle, setSelectedVehicle] = useState<Vehicle | null>(null);
 
-    const navigate = useNavigate();
+    const [isAddModalOpen, setAddModalOpen] = useState<boolean>(false);
+    const [isUpdateModalOpen, setUpdateModalOpen] = useState<boolean>(false);
 
-    const dispatch = useDispatch();
+    const [searchText, setSearchText] = useState("");
 
-    const [licensePlate, setLicensePlate] = useState("");
-    const [category, setCategory] = useState("");
-    const [fuelType, setFuelType] = useState("");
-    const [vehicleStatus, setVehicleStatus] = useState("");
-    const [isAdding, setIsAdding] = useState(true); // Track the current action
-    const [isUpdating, setIsUpdating] = useState(false);
-    const [isDeleting, setIsDeleting] = useState(false);
+    function handleSearch(){
+        console.log(searchText);
+    }
 
-    const handleAdd = () => {
-        setIsAdding(true);
-        setIsUpdating(false);
-        setIsDeleting(false);
-    };
+    function openAddVehicleModal() {
+        setAddModalOpen(true);
+    }
 
-    const handleUpdate = () => {
-        setIsAdding(false);
-        setIsUpdating(true);
-        setIsDeleting(false);
-    };
+    function openUpdateVehicleModal(vehicle: Vehicle) {
+        setSelectedVehicle(vehicle);
+        setUpdateModalOpen(true);
+    }
 
-    const handleDelete = () => {
-        setIsAdding(false);
-        setIsUpdating(false);
-        setIsDeleting(true);
-    };
-    const handleSubmit = () => {
-        if (isAdding) {
-            const newVehicle = new Vehicle(licensePlate, category, fuelType, vehicleStatus);
-            dispatch(addVehicle(newVehicle));
-        } else if (isUpdating) {
-            const updatedVehicle = { licensePlate, category, fuelType, status };
-            dispatch(updateVehicle(updatedVehicle));
-        } else if (isDeleting) {
-            const deletedVehicle = new Customer(licensePlate, category, fuelType, vehicleStatus);
-            dispatch(deleteVehicle(deletedVehicle));
-        }
+    const vehicles = useSelector((state) => state.vehicle);
 
-        navigate('/');
-    };
 
-    return (
+    return(
         <>
-            <header><h2>Vehicle</h2></header>
-            <br/>
+            <div className="container mt-5">
+                <h5 className="card-header">Vehicles</h5>
+                <div className="card-body">
 
-            <Modal
-                handleSubmit={handleSubmit}
-                setLicensePlate={setLicensePlate}
-                setCategory={setCategory}
-                setFuelType={setFuelType}
-                setStatus={setVehicleStatus}
-            ></Modal>
-            <button onClick={handleAdd}>Add Vehicle</button>
-            <button onClick={handleUpdate}>Update Vehicle</button>
-            <button onClick={handleDelete}>Delete Vehicle</button>
+                    <div className="row mb-3">
+                        <div className="col-md-6 text-start">
+
+                            <button className="btn btn-success me-md-2" type="button"
+                                    onClick={openAddVehicleModal}>New Vehicle
+                            </button>
+                            {/*<button className="btn btn-warning me-md-2" type="button" data-bs-toggle="modal"
+                                    data-bs-target="#updateEquipmentModal" id="updateEquipmentbtn"
+                                    onClick={openUpdateModal}>Update Equipment
+                            </button>*/}
+                        </div>
+                        <div className="col-md-6">
+                            <form className="d-flex">
+                                <input className="form-control me-2" type="search" placeholder="Search Vehicle"
+                                       aria-label="Search" id="searchBar"/>
+                                <button className="btn btn-primary" type="button" id="vehicleSearchButton">Search
+                                </button>
+                            </form>
+                            <ul id="suggestions"></ul>
+                        </div>
+
+                    </div>
+
+
+                    <div className="row">
+                        <div className="col">
+                            <table className="table" id="vehicle-table">
+                                <thead>
+                                <tr>
+                                    <th>Code</th>
+                                    <th>License Plate</th>
+                                    <th>Category</th>
+                                    <th>Fuel Type</th>
+                                    <th>Status</th>
+                                </tr>
+                                </thead>
+
+                                {vehicles && (
+                                    <tbody>
+                                    {
+                                        vehicles.map((vehicle: Vehicle) => (
+                                            <tr key={vehicle.code} onClick={() => openUpdateVehicleModal(vehicle)}>
+                                                <td>{vehicle.licensePlate}</td>
+                                                <td>{vehicle.category}</td>
+                                                <td>{vehicle.fuelType}</td>
+                                                <td>{vehicle.vehicleStatus}</td>
+                                            </tr>
+                                        ))
+                                    }
+                                    </tbody>
+                                )}
+                            </table>
+                        </div>
+                    </div>
+
+                    <AddVehicleModal isOpen={isAddModalOpen} onClose={() => setAddModalOpen(false)}/>
+                    <UpdateVehicleModal isOpen={isUpdateModalOpen} onClose={() => setUpdateModalOpen(false)}
+                                          selectedVehicle={selectedVehicle}/>
+
+                </div>
+            </div>
         </>
-    );
+    )
 }
