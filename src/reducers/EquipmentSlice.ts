@@ -1,7 +1,7 @@
-import {Equipment} from "../models/Equipment.ts";
+import {Log} from "../models/Equipment.ts";
 import {createSlice} from "@reduxjs/toolkit";
 
-const initialState: Equipment[] = [];
+const initialState: Log[] = [];
 
 const equipmentSlice = createSlice({
     name: "equipments",
