@@ -3,7 +3,6 @@ import{RouterProvider, createBrowserRouter} from "react-router";
 import {RootLayout} from "./components/RootLayout.tsx";
 import {Dashboard} from "./pages/Dashboard.tsx";
 import {VehiclePage} from "./pages/Vehicle.tsx";
-import React from "react";
 import {EquipmentPage} from "./pages/Equipment.tsx";
 import {LogPage} from "./pages/Log.tsx";
 import {StaffPage} from "./pages/Staff.tsx";
