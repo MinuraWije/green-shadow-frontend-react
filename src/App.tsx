@@ -1,5 +1,5 @@
 import './App.css'
-import{RouterProvider, createBrowserRouter} from "react-router";
+import{RouterProvider, createBrowserRouter} from "react-router-dom";
 import {RootLayout} from "./components/RootLayout.tsx";
 import {Dashboard} from "./pages/Dashboard.tsx";
 import {VehiclePage} from "./pages/Vehicle.tsx";
@@ -15,15 +15,15 @@ function App() {
             path: '',
             element : <RootLayout/>,
             children : [
-                { path : '', element : <Dashboard/>},
-                { path : '/vehicle', element : <VehiclePage/>},
-                { path : '/equipment', element : <EquipmentPage/>},
-                { path : '/log', element : <LogPage/>},
-                { path : '/staff', element : <StaffPage/>},
-                { path : '/field', element : <FieldPage/>},
-                { path : '/crop', element : <CropPage/>},
+                { path : '', element : <Dashboard />},
+                { path : 'vehicle', element : <VehiclePage />},
+                { path : 'equipment', element : <EquipmentPage />},
+                { path : 'log', element : <LogPage />},
+                { path : 'staff', element : <StaffPage />},
+                { path : 'field', element : <FieldPage />},
+                { path : 'crop', element : <CropPage />},
             ]
-        },
+        }
     ])
 
   return (
