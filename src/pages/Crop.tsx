@@ -10,11 +10,11 @@ export function CropPage() {
     const [isAddModalOpen, setAddModalOpen] = useState<boolean>(false);
     const [isUpdateModalOpen, setUpdateModalOpen] = useState<boolean>(false);
 
-    const [searchText, setSearchText] = useState("");
+    /*const [searchText, setSearchText] = useState("");
 
     function handleSearch(){
         console.log(searchText);
-    }
+    }*/
 
     function openAddCropModal() {
         setAddModalOpen(true);
