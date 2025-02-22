@@ -161,15 +161,21 @@ export function LogPage() {
                             {logs && (
                                 <tbody>
                                 {logs.map((log: Log) => (
-                                    <tr
-                                        key={log.code}
+                                    <tr key={log.code}
                                         className="hover:bg-gray-100 cursor-pointer border-b"
-                                        onClick={() => openUpdateLogModal(log)}
-                                    >
+                                        onClick={() => openUpdateLogModal(log)}>
                                         <td className="table-data">{log.code}</td>
                                         <td className="table-data">{log.details}</td>
                                         <td className="table-data">{log.date}</td>
-                                        <td className="table-data">{log.observedImg}</td>
+                                        <td className="table-data">{log.observedImg ? (
+                                            <img
+                                                src={log.observedImg}
+                                                alt="Observed"
+                                                className="w-36 h-36 object-cover rounded-lg"
+                                            />
+                                        ) : (
+                                            "No Image"
+                                        )}</td>
                                     </tr>
                                 ))}
                                 </tbody>
@@ -180,11 +186,8 @@ export function LogPage() {
 
                 {/* Modals */}
                 <AddLogModal isOpen={isAddModalOpen} onClose={() => setAddModalOpen(false)} />
-                <UpdateLogModal
-                    isOpen={isUpdateModalOpen}
-                    onClose={() => setUpdateModalOpen(false)}
-                    selectedLog={selectedLog}
-                />
+                <UpdateLogModal isOpen={isUpdateModalOpen} onClose={() => setUpdateModalOpen(false)}
+                                selectedLog={selectedLog}/>
             </div>
         </div>
     );
