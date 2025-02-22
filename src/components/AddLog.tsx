@@ -18,9 +18,9 @@ const AddLogModal : React.FC<addLogModalProps> = ({isOpen, onClose}) => {
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        const id = `LID-${v4()}`;
+        const code = `LID-${v4()}`;
         const log = {
-            id,
+            code,
             details: details,
             date: date,
             observedImg: observedImg,
