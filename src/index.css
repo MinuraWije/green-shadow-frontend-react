@@ -1,3 +1,58 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.modal-label{
+    @apply block font-medium
+}
+
+.modal-inputs{
+    @apply w-full p-2 border rounded
+}
+
+.modal-button-add{
+    @apply px-4 py-2 bg-green-600 text-white rounded
+}
+
+.modal-button-update{
+    @apply px-4 py-2 bg-blue-600 text-white rounded
+}
+
+.modal-button-delete{
+    @apply px-4 py-2 bg-red-600 text-white rounded
+}
+.modal-button-close{
+    @apply px-4 py-2 bg-red-600 text-white rounded
+}
+
+.button-add-modal{
+    @apply bg-green-600 text-white px-5 py-2 rounded-lg shadow-md hover:bg-green-700 transition duration-200
+}
+
+.button-update-modal{
+    @apply bg-blue-600 text-white px-5 py-2 rounded-lg shadow-md hover:bg-green-700 transition duration-200
+}
+
+.search-bar{
+    @apply border rounded-md py-2 px-4 focus:outline-none focus:ring-2 focus:ring-blue-500
+}
+
+.search-button{
+    @apply bg-blue-600 text-white px-4 py-2 rounded-lg shadow-md hover:bg-blue-700 transition duration-200
+}
+
+.table-design{
+    @apply w-full border border-gray-200 bg-gray-50 rounded-lg shadow-md
+}
+
+.thead-design{
+    @apply bg-gray-200 text-gray-700
+}
+
+.column-header{
+    @apply py-3 px-4 text-left
+}
+
+.table-data{
+    @apply py-3 px-4
+}
