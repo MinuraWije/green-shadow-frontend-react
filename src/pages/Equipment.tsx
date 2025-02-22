@@ -29,7 +29,6 @@ export function EquipmentPage() {
 
 
     return(
-        <>
             <div className="flex h-screen">
                 <div className="flex-1 flex flex-col h-screen overflow-hidden">
                     <div className="p-6 bg-white shadow-md flex-1 overflow-y-auto">
@@ -57,8 +56,7 @@ export function EquipmentPage() {
 
                                 {equipments && (
                                     <tbody>
-                                    {
-                                        equipments.map((equipment: Equipment) => (
+                                    {equipments.map((equipment: Equipment) => (
                                             <tr key={equipment.id}
                                                 className="hover:bg-gray-100 cursor-pointer border-b"
                                                 onClick={() => openUpdateEquipmentModal(equipment)}>
@@ -79,6 +77,5 @@ export function EquipmentPage() {
                                           selectedEquipment={selectedEquipment}/>
                 </div>
             </div>
-        </>
     )
 }
