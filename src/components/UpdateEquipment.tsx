@@ -47,14 +47,14 @@ const UpdateEquipmentModal: React.FC<UpdateEquipmentModalProps> = ({isOpen, onCl
         onClose();
     }
     return (
-        <div className="modal fade" id="updateEquipmentModal"
+        /*<div className="modal fade" id="updateEquipmentModal"
              aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div className="modal-dialog modal-dialog-centered">
                 <div className="modal-content">
                     <div className="modal-header text-bg-success">
                         <h1 className="modal-title fs-5" id="updateEquipment">Update Equipment</h1>
-                        {/*<button type="button" className="btn-close" data-bs-dismiss="modal"
-                                aria-label="Close"></button>*/}
+                        {/!*<button type="button" className="btn-close" data-bs-dismiss="modal"
+                                aria-label="Close"></button>*!/}
                         <form onSubmit={handleSubmit}>
                             <div className="modal-body">
                                 <div className="mb-3">
@@ -93,6 +93,34 @@ const UpdateEquipmentModal: React.FC<UpdateEquipmentModalProps> = ({isOpen, onCl
                     </div>
 
                 </div>
+            </div>
+        </div>*/
+        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+            <div className="bg-white p-6 rounded-lg shadow-lg w-1/3">
+                <h2 className="text-xl font-bold mb-4">Update Equipment</h2>
+                <form onSubmit={handleSubmit}>
+                    <div className="mb-3">
+                        <label className="modal-label">Equipment Name:</label>
+                        <input type="text" className="modal-inputs" required/>
+                    </div>
+                    <div className="mb-3">
+                        <label className="modal-label">Type:</label>
+                        <input type="text" className="modal-inputs" required/>
+                    </div>
+                    <div className="mb-3">
+                        <label className="modal-label">Status:</label>
+                        <select className="modal-inputs">
+                            <option>Select</option>
+                            <option value="AVAILABLE">Available</option>
+                            <option value="NOT_AVAILABLE">Not Available</option>
+                        </select>
+                    </div>
+                    <div className="flex justify-end space-x-2">
+                        <button type="submit" className="modal-button-update">Update</button>
+                        <button type="button" className="modal-button-delete" onClick={handleDelete}>Delete</button>
+                        <button type="button" className="modal-button-close" onClick={onClose}>Close</button>
+                    </div>
+                </form>
             </div>
         </div>
     )
