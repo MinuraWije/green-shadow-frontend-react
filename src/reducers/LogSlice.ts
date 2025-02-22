@@ -1,5 +1,5 @@
 import {createSlice} from "@reduxjs/toolkit";
-import {Staff} from "../models/Log.ts";
+import {Log, Staff} from "../models/Log.ts";
 
 const initialState: Staff[] = [];
 
@@ -11,14 +11,14 @@ const logSlice = createSlice({
             state.push(action.payload);
         },
         updateLog: (state, action) => {
-            return state.map((log) =>
+            return state.map((log:Log) =>
                 log.code === action.payload.code
                     ? {...log, ...action.payload}
                     :log
             );
         },
         deleteLog: (state, action) => {
-            return state.filter((log) => log.code !== action.payload.code);
+            return state.filter((log:Log) => log.code !== action.payload.code);
         },
     },
 });
