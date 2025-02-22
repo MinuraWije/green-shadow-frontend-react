@@ -47,50 +47,40 @@ const UpdateLogModal: React.FC<UpdateLogModalProps> = ({isOpen, onClose, selecte
         onClose();
     }
     return (
-        <div className="modal fade" id="updateLogModal"
-             aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div className="modal-dialog modal-dialog-centered">
-                <div className="modal-content">
-                    <div className="modal-header text-bg-success">
-                        <h1 className="modal-title fs-5" id="updateLog">Update Log</h1>
+        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+            <div className="bg-white p-6 rounded-lg shadow-lg w-1/3">
+                <h1 className="text-xl font-bold mb-4">Update Log</h1>
                         {/*<button type="button" className="btn-close" data-bs-dismiss="modal"
                                 aria-label="Close"></button>*/}
-                        <form onSubmit={handleSubmit}>
-                            <div className="modal-body">
-                                <div className="mb-3">
-                                    <label id="logIdUpdate" className="form-label">EXXX</label>
-                                </div>
-                                <div className="mb-3">
-                                    <label className="form-label">Log Details :</label>
-                                    <input type="text" className="form-control" id="logDetailsUpdate"
-                                           onChange={(e) => setDetails(e.target.value)}/>
-                                </div>
-                                <div className="mb-3">
-                                    <label className="form-label">Date :</label>
-                                    <input type="text" className="form-control" id="logDateUpdate"
-                                           onChange={(e) => setDate(e.target.value)}/>
-                                </div>
-                                <div className="mb-3">
-                                    <label className="form-label">Observed Img :</label>
-                                    <input type="file" className="form-control" id="logObservedImgUpdate"
-                                           required onChange={(e) => setObservedImg(e.target.value)}/>
-                                </div>
-                            </div>
-                            <div className="modal-footer">
-                                <button type="submit" className="btn btn-outline-primary"
-                                        id="btnUpdateLog">Update
-                                </button>
-                                <button type="button" className="btn btn-outline-danger" data-bs-dismiss="modal"
-                                        id="btnDeleteLog" onClick={handleDelete}>Delete
-                                </button>
-                                <button type="button" className="mr-2" onClick={onClose}>Cancel</button>
-                            </div>
-                        </form>
+                <form onSubmit={handleSubmit}>
+                    <div className="mb-3">
+                        <label id="logIdUpdate" className="form-label">EXXX</label>
+                    </div>
+                    <div className="mb-3">
+                        <label className="modal-label">Log Details :</label>
+                        <input type="text" className="modal-inputs"
+                               onChange={(e) => setDetails(e.target.value)}/>
+                    </div>
+                    <div className="mb-3">
+                        <label className="modal-label">Date :</label>
+                        <input type="text" className="modal-inputs"
+                               onChange={(e) => setDate(e.target.value)}/>
+                    </div>
+                    <div className="mb-3">
+                        <label className="modal-label">Observed Img :</label>
+                        <input type="file" className="modal-inputs"
+                               required onChange={(e) => setObservedImg(e.target.value)}/>
                     </div>
 
-                </div>
+                    <div className="flex justify-end space-x-2">
+                        <button type="submit" className="modal-button-update" id="btnUpdateLog">Update</button>
+                        <button type="button" className="modal-button-delete" onClick={handleDelete}>Delete</button>
+                        <button type="button" className="modal-button-close" onClick={onClose}>Cancel</button>
+                    </div>
+                </form>
             </div>
         </div>
+
     )
 };
 
