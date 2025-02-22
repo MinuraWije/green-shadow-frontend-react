@@ -30,43 +30,28 @@ export function EquipmentPage() {
 
     return(
         <>
-            <div className="container mt-5">
-                <h5 className="card-header">Equipments</h5>
-                <div className="card-body">
+            <div className="flex h-screen">
+                <div className="flex-1 flex flex-col h-screen overflow-hidden">
+                    <div className="p-6 bg-white shadow-md flex-1 overflow-y-auto">
+                        <h5 className="text-2xl font-bold mb-4 text-gray-800">Equipments</h5>
 
-                    <div className="row mb-3">
-                        <div className="col-md-6 text-start">
-
-                            <button className="btn btn-success me-md-2" type="button"
-                                    onClick={openAddEquipmentModal}>New Equipment
-                            </button>
-                            {/*<button className="btn btn-warning me-md-2" type="button" data-bs-toggle="modal"
-                                    data-bs-target="#updateEquipmentModal" id="updateEquipmentbtn"
-                                    onClick={openUpdateModal}>Update Equipment
-                            </button>*/}
-                        </div>
-                        <div className="col-md-6">
-                            <form className="d-flex">
-                                <input className="form-control me-2" type="search" placeholder="Search Equipment"
-                                       aria-label="Search" id="searchBar"/>
-                                <button className="btn btn-primary" type="button" id="equipmentSearchButton">Search
-                                </button>
+                        <div className="mb-6 flex justify-between items-center">
+                            <button className="button-add-modal" onClick={openAddEquipmentModal}>+ New Equipment</button>
+                            <button className="button-update-modal" onClick={openUpdateEquipmentModal}>Update Equipment</button>
+                            <form className="flex space-x-2">
+                                <input className="search-bar" type="search" placeholder="Search Equipment"/>
+                                <button className="search-button" type="button" id="equipmentSearchButton">Search</button>
                             </form>
-                            <ul id="suggestions"></ul>
                         </div>
 
-                    </div>
-
-
-                    <div className="row">
-                        <div className="col">
-                            <table className="table" id="equipment-table">
-                                <thead>
+                        <div className="overflow-auto flex-1">
+                            <table className="table-design">
+                                <thead className="thead-design">
                                 <tr>
-                                    <th>ID</th>
-                                    <th>Name</th>
-                                    <th>Type</th>
-                                    <th>Status</th>
+                                    <th className="column-header">ID</th>
+                                    <th className="column-header">Name</th>
+                                    <th className="column-header">Type</th>
+                                    <th className="column-header">Status</th>
                                 </tr>
                                 </thead>
 
@@ -74,10 +59,13 @@ export function EquipmentPage() {
                                     <tbody>
                                     {
                                         equipments.map((equipment: Equipment) => (
-                                            <tr key={equipment.id} onClick={() => openUpdateEquipmentModal(equipment)}>
-                                                <td>{equipment.name}</td>
-                                                <td>{equipment.type}</td>
-                                                <td>{equipment.status}</td>
+                                            <tr key={equipment.id}
+                                                className="hover:bg-gray-100 cursor-pointer border-b"
+                                                onClick={() => openUpdateEquipmentModal(equipment)}>
+                                                <td className="table-data">{equipment.id}</td>
+                                                <td className="table-data">{equipment.name}</td>
+                                                <td className="table-data">{equipment.type}</td>
+                                                <td className="table-data">{equipment.status}</td>
                                             </tr>
                                         ))
                                     }
@@ -86,11 +74,9 @@ export function EquipmentPage() {
                             </table>
                         </div>
                     </div>
-
                     <AddEquipmentModal isOpen={isAddModalOpen} onClose={() => setAddModalOpen(false)}/>
                     <UpdateEquipmentModal isOpen={isUpdateModalOpen} onClose={() => setUpdateModalOpen(false)}
                                           selectedEquipment={selectedEquipment}/>
-
                 </div>
             </div>
         </>
