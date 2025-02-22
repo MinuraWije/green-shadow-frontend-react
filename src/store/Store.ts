@@ -8,7 +8,7 @@ import FieldSlice from "../reducers/FieldSlice.ts";
 
 export const store =configureStore({
     reducer:{
-        equipments: EquipmentSlice,
+        equipment: EquipmentSlice,
         vehicles: VehicleSlice,
         staff: StaffSlice,
         crop: CropSlice,
