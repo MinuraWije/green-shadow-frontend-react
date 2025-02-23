@@ -21,9 +21,9 @@ const AddCropModal : React.FC<addCropModalProps> = ({isOpen, onClose}) => {
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        const id = `CID-${v4()}`;
+        const code = `CID-${v4()}`;
         const crop = {
-            id,
+            code,
             name: name,
             scientificName: scientificName,
             category: category,
@@ -36,57 +36,45 @@ const AddCropModal : React.FC<addCropModalProps> = ({isOpen, onClose}) => {
     }
 
     return (
-        <div className="modal fade" id="newLogModal" aria-labelledby="exampleModalLabel"
-             aria-hidden="true">
-            <div className="modal-dialog modal-dialog-centered">
-                <div className="modal-content">
-                    <div className="modal-header text-bg-success">
-                        <h1 className="modal-title fs-5" id="logModal">New Crop</h1>
-                        <form onSubmit={handleSubmit}>
-                            <div className="modal-body">
-                                <div className="mb-3">
-                                    <label className="form-label">Name :</label>
-                                    <input type="text" className="form-control" id="logDetails"
-                                           required onChange={(e) => setName(e.target.value)}/>
-                                </div>
-                                <div className="mb-3">
-                                    <label className="form-label">Scientific Name :</label>
-                                    <input type="text" className="form-control" id="logDate"
-                                           required onChange={(e) => setScientificName(e.target.value)}/>
-                                </div>
-                                <div className="mb-3">
-                                    <label className="form-label">Category :</label>
-                                    <input type="text" className="form-control" id="logDate"
-                                           required onChange={(e) => setCategory(e.target.value)}/>
-                                </div>
-                                <div className="mb-3">
-                                    <label className="form-label">Image :</label>
-                                    <input type="file" className="form-control" id="logObservedImg"
-                                           required onChange={(e) => setImage(e.target.value)}/>
-                                </div>
-                                <div className="mb-3">
-                                    <label className="form-label">Season :</label>
-                                    <input type="text" className="form-control" id="logDate"
-                                           required onChange={(e) => setSeason(e.target.value)}/>
-                                </div>
-                                <div className="mb-3">
-                                    <label className="form-label">Field Code :</label>
-                                    <input type="text" className="form-control" id="logDate"
-                                           required onChange={(e) => setFieldCode(e.target.value)}/>
-                                </div>
-                            </div>
-                            <div className="modal-footer">
-                                <button type="submit" className="btn btn-outline-success"
-                                        id="btnAddLog">Add
-                                </button>
-                                <button type="button" className="btn btn-outline-danger"
-                                        onClick={onClose}>Close
-                                </button>
-                            </div>
-                        </form>
+        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+            <div className="bg-white p-6 rounded-lg shadow-lg w-1/3">
+                <h1 className="text-xl font-bold mb-4">New Crop</h1>
+                <form onSubmit={handleSubmit}>
+                    <div className="mb-3">
+                        <label className="modal-label">Name :</label>
+                        <input type="text" className="modal-inputs"
+                               required onChange={(e) => setName(e.target.value)}/>
                     </div>
-
-                </div>
+                    <div className="mb-3">
+                        <label className="modal-label">Scientific Name :</label>
+                        <input type="text" className="modal-inputs"
+                               required onChange={(e) => setScientificName(e.target.value)}/>
+                    </div>
+                    <div className="mb-3">
+                        <label className="modal-label">Category :</label>
+                        <input type="text" className="modal-inputs"
+                               required onChange={(e) => setCategory(e.target.value)}/>
+                    </div>
+                    <div className="mb-3">
+                        <label className="modal-label">Image :</label>
+                        <input type="file" className="modal-inputs"
+                               required onChange={(e) => setImage(e.target.value)}/>
+                    </div>
+                    <div className="mb-3">
+                        <label className="modal-label">Season :</label>
+                        <input type="text" className="modal-inputs"
+                               required onChange={(e) => setSeason(e.target.value)}/>
+                    </div>
+                    <div className="mb-3">
+                        <label className="modal-label">Field Code :</label>
+                        <input type="text" className="modal-inputs"
+                               required onChange={(e) => setFieldCode(e.target.value)}/>
+                    </div>
+                    <div className="flex justify-end space-x-2">
+                        <button type="submit" className="modal-button-add">Add</button>
+                        <button type="button" className="modal-button-close" onClick={onClose}>Close</button>
+                    </div>
+                </form>
             </div>
         </div>
     )
