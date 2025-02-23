@@ -11,14 +11,14 @@ const vehicleSlice = createSlice({
             state.push(action.payload);
         },
         updateVehicle: (state, action) => {
-            return state.map((vehicle) =>
+            return state.map((vehicle:Vehicle) =>
                 vehicle.code === action.payload.code
                     ? {...vehicle, ...action.payload}
                     :vehicle
             );
         },
         deleteVehicle: (state, action) => {
-            return state.filter((vehicle) => vehicle.code !== action.payload.code);
+            return state.filter((vehicle:Vehicle) => vehicle.code !== action.payload.code);
         },
     },
 });
