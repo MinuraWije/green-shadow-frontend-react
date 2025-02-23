@@ -97,9 +97,7 @@ const AddEquipmentModal : React.FC<addEquipmentModalProps> = ({isOpen, onClose})
                     </div>
                     <div className="flex justify-end space-x-2">
                         <button type="submit" className="modal-button-add">Add</button>
-                        <button type="button" className="modal-button-close"
-                                onClick={onClose}>Close
-                        </button>
+                        <button type="button" className="modal-button-close" onClick={onClose}>Close</button>
                     </div>
                 </form>
             </div>
