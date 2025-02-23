@@ -12,7 +12,7 @@ const AddLogModal : React.FC<addLogModalProps> = ({isOpen, onClose}) => {
 
     const [details, setDetails] = useState("");
     const [date, setDate] = useState("");
-    const [observedImg, setObservedImg] = useState("");
+    const [img, setImg] = useState("");
     const dispatch = useDispatch();
     if (!isOpen) return  null;
 
@@ -23,7 +23,7 @@ const AddLogModal : React.FC<addLogModalProps> = ({isOpen, onClose}) => {
             code,
             details: details,
             date: date,
-            observedImg: observedImg,
+            img: img,
         }
         dispatch(addLog(log));
         onClose();
@@ -47,7 +47,7 @@ const AddLogModal : React.FC<addLogModalProps> = ({isOpen, onClose}) => {
                         <div className="mb-3">
                             <label className="modal-label">Observed Img :</label>
                             <input type="file" className="modal-inputs"
-                                   required onChange={(e) => setObservedImg(e.target.value)}/>
+                                   required onChange={(e) => setImg(e.target.value)}/>
                         </div>
                     <div className="flex justify-end space-x-2">
                         <button type="submit" className="modal-button-add"

@@ -14,7 +14,7 @@ const UpdateLogModal: React.FC<UpdateLogModalProps> = ({isOpen, onClose, selecte
     const [code, setCode] = useState('');
     const [details, setDetails] = useState('');
     const [date, setDate] = useState('');
-    const [observedImg, setObservedImg] = useState('');
+    const [img, setImg] = useState('');
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -22,7 +22,7 @@ const UpdateLogModal: React.FC<UpdateLogModalProps> = ({isOpen, onClose, selecte
             setCode(selectedLog.code);
             setDetails(selectedLog.details);
             setDate(selectedLog.date);
-            setObservedImg(selectedLog.observedImg);
+            setImg(selectedLog.img);
         }
     }, [selectedLog]);
 
@@ -34,7 +34,7 @@ const UpdateLogModal: React.FC<UpdateLogModalProps> = ({isOpen, onClose, selecte
             code: code,
             details: details,
             date: date,
-            observedImg: observedImg,
+            img: img,
         }
         dispatch(updateLog(log));
         onClose();
@@ -58,18 +58,18 @@ const UpdateLogModal: React.FC<UpdateLogModalProps> = ({isOpen, onClose, selecte
                     </div>
                     <div className="mb-3">
                         <label className="modal-label">Log Details :</label>
-                        <input type="text" className="modal-inputs"
+                        <input type="text" value={details} className="modal-inputs"
                                onChange={(e) => setDetails(e.target.value)}/>
                     </div>
                     <div className="mb-3">
                         <label className="modal-label">Date :</label>
-                        <input type="text" className="modal-inputs"
+                        <input type="text" value={date} className="modal-inputs"
                                onChange={(e) => setDate(e.target.value)}/>
                     </div>
                     <div className="mb-3">
                         <label className="modal-label">Observed Img :</label>
                         <input type="file" className="modal-inputs"
-                               required onChange={(e) => setObservedImg(e.target.value)}/>
+                               required onChange={(e) => setImg(e.target.value)}/>
                     </div>
 
                     <div className="flex justify-end space-x-2">
