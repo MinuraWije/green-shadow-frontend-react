@@ -65,78 +65,61 @@ const UpdateStaffModal: React.FC<UpdateStaffModalProps> = ({isOpen, onClose, sel
         onClose();
     }
     return (
-        <div className="modal fade" id="updateLogModal"
-             aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div className="modal-dialog modal-dialog-centered">
-                <div className="modal-content">
-                    <div className="modal-header text-bg-success">
-                        <h1 className="modal-title fs-5" id="updateLog">Update Staff</h1>
-                        {/*<button type="button" className="btn-close" data-bs-dismiss="modal"
-                                aria-label="Close"></button>*/}
-                        <form onSubmit={handleSubmit}>
-                            <div className="modal-body">
-                                <div className="mb-3">
-                                    <label id="logIdUpdate" className="form-label">SXXX</label>
-                                </div>
-                                <div className="mb-3">
-                                    <label className="form-label">Name :</label>
-                                    <input type="text" className="form-control" id="logDetailsUpdate"
-                                           onChange={(e) => setName(e.target.value)}/>
-                                </div>
-                                <div className="mb-3">
-                                    <label className="form-label">Role :</label>
-                                    <input type="text" className="form-control" id="logDateUpdate"
-                                           onChange={(e) => setRole(e.target.value)}/>
-                                </div>
-                                <div className="mb-3">
-                                    <label className="form-label">Designation :</label>
-                                    <input type="text" className="form-control" id="logObservedImgUpdate"
-                                           required onChange={(e) => setDesignation(e.target.value)}/>
-                                </div>
-                                <div className="mb-3">
-                                    <label className="form-label">Gender :</label>
-                                    <input type="text" className="form-control" id="logObservedImgUpdate"
-                                           required onChange={(e) => setGender(e.target.value)}/>
-                                </div>
-                                <div className="mb-3">
-                                    <label className="form-label">Joined Date :</label>
-                                    <input type="text" className="form-control" id="logObservedImgUpdate"
-                                           required onChange={(e) => setJoinedDate(e.target.value)}/>
-                                </div>
-                                <div className="mb-3">
-                                    <label className="form-label">Email :</label>
-                                    <input type="text" className="form-control" id="logObservedImgUpdate"
-                                           required onChange={(e) => setEmail(e.target.value)}/>
-                                </div>
-                                <div className="mb-3">
-                                    <label className="form-label">Dob :</label>
-                                    <input type="text" className="form-control" id="logObservedImgUpdate"
-                                           required onChange={(e) => setDob(e.target.value)}/>
-                                </div>
-                                <div className="mb-3">
-                                    <label className="form-label">Address :</label>
-                                    <input type="text" className="form-control" id="logObservedImgUpdate"
-                                           required onChange={(e) => setAddress(e.target.value)}/>
-                                </div>
-                                <div className="mb-3">
-                                    <label className="form-label">Contact Number :</label>
-                                    <input type="text" className="form-control" id="logObservedImgUpdate"
-                                           required onChange={(e) => setContactNumber(e.target.value)}/>
-                                </div>
-                            </div>
-                            <div className="modal-footer">
-                                <button type="submit" className="btn btn-outline-primary"
-                                        id="btnUpdateLog">Update
-                                </button>
-                                <button type="button" className="btn btn-outline-danger" data-bs-dismiss="modal"
-                                        id="btnDeleteLog" onClick={handleDelete}>Delete
-                                </button>
-                                <button type="button" className="mr-2" onClick={onClose}>Cancel</button>
-                            </div>
-                        </form>
+        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+            <div className="bg-white p-6 rounded-lg shadow-lg w-1/3">
+                <h2 className="text-xl font-bold mb-4">Update Staff</h2>
+                <form onSubmit={handleSubmit}>
+                    <div className="mb-3">
+                        <label className="modal-label">Name :</label>
+                        <input type="text" value={name} className="modal-inputs" id="logDetailsUpdate"
+                               onChange={(e) => setName(e.target.value)}/>
                     </div>
-
-                </div>
+                    <div className="mb-3">
+                        <label className="modal-label">Role :</label>
+                        <input type="text" value={role} className="modal-inputs" id="logDateUpdate"
+                               onChange={(e) => setRole(e.target.value)}/>
+                    </div>
+                    <div className="mb-3">
+                        <label className="modal-label">Designation :</label>
+                        <input type="text" value={designation} className="modal-inputs" id="logObservedImgUpdate"
+                               required onChange={(e) => setDesignation(e.target.value)}/>
+                    </div>
+                    <div className="mb-3">
+                        <label className="modal-label">Gender :</label>
+                        <input type="text" value={gender} className="modal-inputs" id="logObservedImgUpdate"
+                               required onChange={(e) => setGender(e.target.value)}/>
+                    </div>
+                    <div className="mb-3">
+                        <label className="modal-label">Joined Date :</label>
+                        <input type="text" value={joinedDate} className="modal-inputs" id="logObservedImgUpdate"
+                               required onChange={(e) => setJoinedDate(e.target.value)}/>
+                    </div>
+                    <div className="mb-3">
+                        <label className="modal-label">Email :</label>
+                        <input type="text" value={email} className="modal-inputs" id="logObservedImgUpdate"
+                               required onChange={(e) => setEmail(e.target.value)}/>
+                    </div>
+                    <div className="mb-3">
+                        <label className="modal-label">Dob :</label>
+                        <input type="text" value={dob} className="modal-inputs" id="logObservedImgUpdate"
+                               required onChange={(e) => setDob(e.target.value)}/>
+                    </div>
+                    <div className="mb-3">
+                        <label className="modal-label">Address :</label>
+                        <input type="text" value={address} className="modal-inputs" id="logObservedImgUpdate"
+                               required onChange={(e) => setAddress(e.target.value)}/>
+                    </div>
+                    <div className="mb-3">
+                        <label className="modal-label">Contact Number :</label>
+                        <input type="text" value={contactNumber} className="modal-inputs" id="logObservedImgUpdate"
+                               required onChange={(e) => setContactNumber(e.target.value)}/>
+                    </div>
+                    <div className="flex justify-end space-x-2">
+                        <button type="submit" className="modal-button-update">Update</button>
+                        <button type="button" className="modal-button-delete" onClick={handleDelete}>Delete</button>
+                        <button type="button" className="modal-button-close" onClick={onClose}>Cancel</button>
+                    </div>
+                </form>
             </div>
         </div>
     )

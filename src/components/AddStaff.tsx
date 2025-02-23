@@ -42,72 +42,60 @@ const AddStaffModal : React.FC<addStaffModalProps> = ({isOpen, onClose}) => {
     }
 
     return (
-        <div className="modal fade" id="newStaffModal" aria-labelledby="exampleModalLabel"
-             aria-hidden="true">
-            <div className="modal-dialog modal-dialog-centered">
-                <div className="modal-content">
-                    <div className="modal-header text-bg-success">
-                        <h1 className="modal-title fs-5" id="staffModal">New Staff</h1>
-                        <form onSubmit={handleSubmit}>
-                            <div className="modal-body">
-                                <div className="mb-3">
-                                    <label className="form-label">Name :</label>
-                                    <input type="text" className="form-control" id="logDetails"
-                                           required onChange={(e) => setName(e.target.value)}/>
-                                </div>
-                                <div className="mb-3">
-                                    <label className="form-label">Role :</label>
-                                    <input type="text" className="form-control" id="logDate"
-                                           required onChange={(e) => setRole(e.target.value)}/>
-                                </div>
-                                <div className="mb-3">
-                                    <label className="form-label">Designation :</label>
-                                    <input type="text" className="form-control" id="logDate"
-                                           required onChange={(e) => setDesignation(e.target.value)}/>
-                                </div>
-                                <div className="mb-3">
-                                    <label className="form-label">Gender :</label>
-                                    <input type="text" className="form-control" id="logDate"
-                                           required onChange={(e) => setGender(e.target.value)}/>
-                                </div>
-                                <div className="mb-3">
-                                    <label className="form-label">Joined Date :</label>
-                                    <input type="text" className="form-control" id="logDate"
-                                           required onChange={(e) => setJoinedDate(e.target.value)}/>
-                                </div>
-                                <div className="mb-3">
-                                    <label className="form-label">Email :</label>
-                                    <input type="text" className="form-control" id="logDate"
-                                           required onChange={(e) => setEmail(e.target.value)}/>
-                                </div>
-                                <div className="mb-3">
-                                    <label className="form-label">Dob :</label>
-                                    <input type="text" className="form-control" id="logDate"
-                                           required onChange={(e) => setDob(e.target.value)}/>
-                                </div>
-                                <div className="mb-3">
-                                    <label className="form-label">Address :</label>
-                                    <input type="text" className="form-control" id="logDate"
-                                           required onChange={(e) => setAddress(e.target.value)}/>
-                                </div>
-                                <div className="mb-3">
-                                    <label className="form-label">Contact Number :</label>
-                                    <input type="text" className="form-control" id="logDate"
-                                           required onChange={(e) => setContactNumber(e.target.value)}/>
-                                </div>
-                            </div>
-                            <div className="modal-footer">
-                                <button type="submit" className="btn btn-outline-success"
-                                        id="btnAddLog">Add
-                                </button>
-                                <button type="button" className="btn btn-outline-danger"
-                                        onClick={onClose}>Close
-                                </button>
-                            </div>
-                        </form>
+        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+            <div className="bg-white p-6 rounded-lg shadow-lg w-1/3">
+                <h2 className="text-xl font-bold mb-4">New Staff</h2>
+                <form onSubmit={handleSubmit}>
+                    <div className="mb-3">
+                        <label className="modal-label">Name :</label>
+                        <input type="text" className="modal-inputs"
+                               required onChange={(e) => setName(e.target.value)}/>
                     </div>
-
-                </div>
+                    <div className="mb-3">
+                        <label className="modal-label">Role :</label>
+                        <input type="text" className="modal-inputs"
+                               required onChange={(e) => setRole(e.target.value)}/>
+                    </div>
+                    <div className="mb-3">
+                        <label className="modal-label">Designation :</label>
+                        <input type="text" className="modal-inputs"
+                               required onChange={(e) => setDesignation(e.target.value)}/>
+                    </div>
+                    <div className="mb-3">
+                        <label className="modal-label">Gender :</label>
+                        <input type="text" className="modal-inputs"
+                               required onChange={(e) => setGender(e.target.value)}/>
+                    </div>
+                    <div className="mb-3">
+                        <label className="modal-label">Joined Date :</label>
+                        <input type="text" className="modal-inputs"
+                               required onChange={(e) => setJoinedDate(e.target.value)}/>
+                    </div>
+                    <div className="mb-3">
+                        <label className="modal-label">Email :</label>
+                        <input type="text" className="modal-inputs"
+                               required onChange={(e) => setEmail(e.target.value)}/>
+                    </div>
+                    <div className="mb-3">
+                        <label className="modal-label">Dob :</label>
+                        <input type="text" className="modal-inputs"
+                               required onChange={(e) => setDob(e.target.value)}/>
+                    </div>
+                    <div className="mb-3">
+                        <label className="modal-label">Address :</label>
+                        <input type="text" className="modal-inputs"
+                               required onChange={(e) => setAddress(e.target.value)}/>
+                    </div>
+                    <div className="mb-3">
+                        <label className="modal-label">Contact Number :</label>
+                        <input type="text" className="modal-inputs" id="logDate"
+                               required onChange={(e) => setContactNumber(e.target.value)}/>
+                    </div>
+                    <div className="flex justify-end space-x-2">
+                        <button type="submit" className="modal-button-add">Add</button>
+                        <button type="button" className="modal-button-close" onClick={onClose}>Close</button>
+                    </div>
+                </form>
             </div>
         </div>
     )
