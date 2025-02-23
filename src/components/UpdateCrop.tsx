@@ -15,7 +15,7 @@ const UpdateCropModal: React.FC<UpdateCropModalProps> = ({isOpen, onClose, selec
     const [name, setName] = useState('');
     const [scientificName, setScientificName] = useState('');
     const [category, setCategory] = useState('');
-    const [image, setImage] = useState('');
+    const [img, setImg] = useState('');
     const [season, setSeason] = useState('');
     const [fieldCode, setFieldCode] = useState('');
     const dispatch = useDispatch();
@@ -26,7 +26,7 @@ const UpdateCropModal: React.FC<UpdateCropModalProps> = ({isOpen, onClose, selec
             setName(selectedCrop.name);
             setScientificName(selectedCrop.scientificName);
             setCategory(selectedCrop.category);
-            setImage(selectedCrop.image);
+            setImg(selectedCrop.img);
             setSeason(selectedCrop.season);
             setFieldCode(selectedCrop.fieldCode);
         }
@@ -41,7 +41,7 @@ const UpdateCropModal: React.FC<UpdateCropModalProps> = ({isOpen, onClose, selec
             name: name,
             scientificName: scientificName,
             category: category,
-            image: image,
+            img: img,
             season: season,
             fieldCode: fieldCode,
         }
@@ -56,63 +56,46 @@ const UpdateCropModal: React.FC<UpdateCropModalProps> = ({isOpen, onClose, selec
         onClose();
     }
     return (
-        <div className="modal fade" id="updateLogModal"
-             aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div className="modal-dialog modal-dialog-centered">
-                <div className="modal-content">
-                    <div className="modal-header text-bg-success">
-                        <h1 className="modal-title fs-5" id="updateLog">Update Crop</h1>
-                        {/*<button type="button" className="btn-close" data-bs-dismiss="modal"
-                                aria-label="Close"></button>*/}
-                        <form onSubmit={handleSubmit}>
-                            <div className="modal-body">
-                                <div className="mb-3">
-                                    <label id="logIdUpdate" className="form-label">CXXX</label>
-                                </div>
-                                <div className="mb-3">
-                                    <label className="form-label">Name :</label>
-                                    <input type="text" className="form-control" id="logDetailsUpdate"
-                                           onChange={(e) => setName(e.target.value)}/>
-                                </div>
-                                <div className="mb-3">
-                                    <label className="form-label">Scientific Name :</label>
-                                    <input type="text" className="form-control" id="logDateUpdate"
-                                           onChange={(e) => setScientificName(e.target.value)}/>
-                                </div>
-                                <div className="mb-3">
-                                    <label className="form-label">Category :</label>
-                                    <input type="text" className="form-control" id="logDateUpdate"
-                                           onChange={(e) => setCategory(e.target.value)}/>
-                                </div>
-                                <div className="mb-3">
-                                    <label className="form-label">Image :</label>
-                                    <input type="file" className="form-control" id="logObservedImgUpdate"
-                                           required onChange={(e) => setImage(e.target.value)}/>
-                                </div>
-                                <div className="mb-3">
-                                    <label className="form-label">Season :</label>
-                                    <input type="text" className="form-control" id="logDateUpdate"
-                                           onChange={(e) => setSeason(e.target.value)}/>
-                                </div>
-                                <div className="mb-3">
-                                    <label className="form-label">Field Code :</label>
-                                    <input type="text" className="form-control" id="logDateUpdate"
-                                           onChange={(e) => setFieldCode(e.target.value)}/>
-                                </div>
-                            </div>
-                            <div className="modal-footer">
-                                <button type="submit" className="btn btn-outline-primary"
-                                        id="btnUpdateLog">Update
-                                </button>
-                                <button type="button" className="btn btn-outline-danger" data-bs-dismiss="modal"
-                                        id="btnDeleteLog" onClick={handleDelete}>Delete
-                                </button>
-                                <button type="button" className="mr-2" onClick={onClose}>Cancel</button>
-                            </div>
-                        </form>
+        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+            <div className="bg-white p-6 rounded-lg shadow-lg w-1/3">
+                <h1 className="text-xl font-bold mb-4">Update Crop</h1>
+                <form onSubmit={handleSubmit}>
+                    <div className="mb-3">
+                        <label className="modal-label">Name :</label>
+                        <input type="text" value={name} className="modal-inputs"
+                               onChange={(e) => setName(e.target.value)}/>
                     </div>
-
-                </div>
+                    <div className="mb-3">
+                        <label className="modal-label">Scientific Name :</label>
+                        <input type="text" value={scientificName} className="modal-inputs"
+                               onChange={(e) => setScientificName(e.target.value)}/>
+                    </div>
+                    <div className="mb-3">
+                        <label className="modal-label">Category :</label>
+                        <input type="text" value={category} className="modal-inputs"
+                               onChange={(e) => setCategory(e.target.value)}/>
+                    </div>
+                    <div className="mb-3">
+                        <label className="modal-label">Image :</label>
+                        <input type="file" className="modal-inputs"
+                               required onChange={(e) => setImg(e.target.value)}/>
+                    </div>
+                    <div className="mb-3">
+                        <label className="modal-label">Season :</label>
+                        <input type="text" value={season} className="modal-inputs"
+                               onChange={(e) => setSeason(e.target.value)}/>
+                    </div>
+                    <div className="mb-3">
+                        <label className="modal-label">Field Code :</label>
+                        <input type="text" value={fieldCode} className="modal-inputs"
+                               onChange={(e) => setFieldCode(e.target.value)}/>
+                    </div>
+                    <div className="flex justify-end space-x-2">
+                        <button type="submit" className="modal-button-update">Update</button>
+                        <button type="button" className="modal-button-delete" onClick={handleDelete}>Delete</button>
+                        <button type="button" className="modal-button-close" onClick={onClose}>Cancel</button>
+                    </div>
+                </form>
             </div>
         </div>
     )

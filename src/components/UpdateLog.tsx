@@ -50,12 +50,7 @@ const UpdateLogModal: React.FC<UpdateLogModalProps> = ({isOpen, onClose, selecte
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
             <div className="bg-white p-6 rounded-lg shadow-lg w-1/3">
                 <h1 className="text-xl font-bold mb-4">Update Log</h1>
-                        {/*<button type="button" className="btn-close" data-bs-dismiss="modal"
-                                aria-label="Close"></button>*/}
                 <form onSubmit={handleSubmit}>
-                    <div className="mb-3">
-                        <label id="logIdUpdate" className="form-label">EXXX</label>
-                    </div>
                     <div className="mb-3">
                         <label className="modal-label">Log Details :</label>
                         <input type="text" value={details} className="modal-inputs"
