@@ -50,57 +50,40 @@ const UpdateVehicleModal: React.FC<UpdateVehicleModalProps> = ({isOpen, onClose,
         onClose();
     }
     return (
-        <div className="modal fade" id="updateVehicleModal"
-             aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div className="modal-dialog modal-dialog-centered">
-                <div className="modal-content">
-                    <div className="modal-header text-bg-success">
-                        <h1 className="modal-title fs-5" id="updateVehicle">Update Vehicle</h1>
-                        {/*<button type="button" className="btn-close" data-bs-dismiss="modal"
-                                aria-label="Close"></button>*/}
-                        <form onSubmit={handleSubmit}>
-                            <div className="modal-body">
-                                <div className="mb-3">
-                                    <label id="vehicleCodeUpdate" className="form-label">EXXX</label>
-                                </div>
-                                <div className="mb-3">
-                                    <label className="form-label">License Plate :</label>
-                                    <input type="text" className="form-control" id="vehicleLicensePlateUpdate"
-                                           onChange={(e) => setLicensePlate(e.target.value)}/>
-                                </div>
-                                <div className="mb-3">
-                                    <label className="form-label">Category :</label>
-                                    <input type="text" className="form-control" id="vehicleCategoryUpdate"
-                                           onChange={(e) => setCategory(e.target.value)}/>
-                                </div>
-                                <div className="mb-3">
-                                    <label className="form-label">Fuel Type :</label>
-                                    <input type="text" className="form-control" id="vehicleFuelTypeUpdate"
-                                           onChange={(e) => setFuelType(e.target.value)}/>
-                                </div>
-                                <div className="mb-3">
-                                    <label htmlFor="vehicleStatusUpdate" className="form-label">Status</label>
-                                    <select className="form-select" aria-label="Default select example"
-                                            id="vehicleStatusUpdate" onChange={(e) => setVehicleStatus(e.target.value)}>
-                                        <option defaultValue={"Select"}>Select</option>
-                                        <option value="AVAILABLE">Available</option>
-                                        <option value="NOT_AVAILABLE">Not_Available</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div className="modal-footer">
-                                <button type="submit" className="btn btn-outline-primary"
-                                        id="btnUpdateVehicle">Update
-                                </button>
-                                <button type="button" className="btn btn-outline-danger" data-bs-dismiss="modal"
-                                        id="btnDeleteVehicle" onClick={handleDelete}>Delete
-                                </button>
-                                <button type="button" className="mr-2" onClick={onClose}>Cancel</button>
-                            </div>
-                        </form>
+        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+            <div className="bg-white p-6 rounded-lg shadow-lg w-1/3">
+                <h1 className="text-xl font-bold mb-4">Update Vehicle</h1>
+                <form onSubmit={handleSubmit}>
+                    <div className="mb-3">
+                        <label className="modal-label">License Plate :</label>
+                        <input type="text" className="modal-inputs" required
+                               onChange={(e) => setLicensePlate(e.target.value)}/>
                     </div>
-
-                </div>
+                    <div className="mb-3">
+                        <label className="modal-label">Category :</label>
+                        <input type="text" className="modal-inputs"
+                               onChange={(e) => setCategory(e.target.value)}/>
+                    </div>
+                    <div className="mb-3">
+                        <label className="modal-label">Fuel Type :</label>
+                        <input type="text" className="modal-inputs"
+                               onChange={(e) => setFuelType(e.target.value)}/>
+                    </div>
+                    <div className="mb-3">
+                        <label className="modal-label">Status</label>
+                        <select className="modal-inputs"
+                                onChange={(e) => setVehicleStatus(e.target.value)}>
+                            <option defaultValue={"Select"}>Select</option>
+                            <option value="AVAILABLE">Available</option>
+                            <option value="NOT_AVAILABLE">Not_Available</option>
+                        </select>
+                    </div>
+                    <div className="flex justify-end space-x-2">
+                        <button type="submit" className="modal-button-update">Update</button>
+                        <button type="button" className="modal-button-delete" onClick={handleDelete}>Delete</button>
+                        <button type="button" className="modal-button-close" onClick={onClose}>Cancel</button>
+                    </div>
+                </form>
             </div>
         </div>
     )

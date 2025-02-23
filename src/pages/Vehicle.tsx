@@ -29,57 +29,43 @@ export function VehiclePage() {
 
 
     return(
-        <>
-            <div className="container mt-5">
-                <h5 className="card-header">Vehicles</h5>
-                <div className="card-body">
+            <div className="flex h-screen">
+                <div className="flex-1 flex flex-col h-screen overflow-hidden">
+                    <div className="p-6 bg-white shadow-md flex-1 overflow-y-auto">
+                        <h5 className="text-2xl font-bold mb-4 text-gray-800">Vehicles</h5>
 
-                    <div className="row mb-3">
-                        <div className="col-md-6 text-start">
-
-                            <button className="btn btn-success me-md-2" type="button"
-                                    onClick={openAddVehicleModal}>New Vehicle
-                            </button>
-                            {/*<button className="btn btn-warning me-md-2" type="button" data-bs-toggle="modal"
-                                    data-bs-target="#updateEquipmentModal" id="updateEquipmentbtn"
-                                    onClick={openUpdateModal}>Update Equipment
-                            </button>*/}
-                        </div>
-                        <div className="col-md-6">
-                            <form className="d-flex">
-                                <input className="form-control me-2" type="search" placeholder="Search Vehicle"
-                                       aria-label="Search" id="searchBar"/>
-                                <button className="btn btn-primary" type="button" id="vehicleSearchButton">Search
-                                </button>
+                        <div className="mb-6 flex justify-between items-center">
+                            <button className="button-add-modal" onClick={openAddVehicleModal}>+ New Vehicle</button>
+                            <button className="button-update-modal" onClick={openUpdateVehicleModal}>Update Vehicle</button>
+                            <form className="flex space-x-2">
+                                <input className="search-bar" type="search" placeholder="Search Vehicle"/>
+                                <button className="search-button" type="button">Search</button>
                             </form>
-                            <ul id="suggestions"></ul>
                         </div>
 
-                    </div>
-
-
-                    <div className="row">
-                        <div className="col">
-                            <table className="table" id="vehicle-table">
-                                <thead>
+                        <div className="overflow-auto flex-1">
+                            <table className="table-design">
+                                <thead className="thead-design">
                                 <tr>
-                                    <th>Code</th>
-                                    <th>License Plate</th>
-                                    <th>Category</th>
-                                    <th>Fuel Type</th>
-                                    <th>Status</th>
+                                    <th className="column-header">Code</th>
+                                    <th className="column-header">License Plate</th>
+                                    <th className="column-header">Category</th>
+                                    <th className="column-header">Fuel Type</th>
+                                    <th className="column-header">Status</th>
                                 </tr>
                                 </thead>
 
                                 {vehicles && (
                                     <tbody>
-                                    {
-                                        vehicles.map((vehicle: Vehicle) => (
-                                            <tr key={vehicle.code} onClick={() => openUpdateVehicleModal(vehicle)}>
-                                                <td>{vehicle.licensePlate}</td>
-                                                <td>{vehicle.category}</td>
-                                                <td>{vehicle.fuelType}</td>
-                                                <td>{vehicle.vehicleStatus}</td>
+                                    {vehicles.map((vehicle: Vehicle) => (
+                                            <tr key={vehicle.code}
+                                                className="hover:bg-gray-100 cursor-pointer border-b"
+                                                onClick={() => openUpdateVehicleModal(vehicle)}>
+                                                <td className="table-data">{vehicle.code}</td>
+                                                <td className="table-data">{vehicle.licensePlate}</td>
+                                                <td className="table-data">{vehicle.category}</td>
+                                                <td className="table-data">{vehicle.fuelType}</td>
+                                                <td className="table-data">{vehicle.vehicleStatus}</td>
                                             </tr>
                                         ))
                                     }
@@ -91,10 +77,9 @@ export function VehiclePage() {
 
                     <AddVehicleModal isOpen={isAddModalOpen} onClose={() => setAddModalOpen(false)}/>
                     <UpdateVehicleModal isOpen={isUpdateModalOpen} onClose={() => setUpdateModalOpen(false)}
-                                          selectedVehicle={selectedVehicle}/>
+                                            selectedVehicle={selectedVehicle}/>
 
                 </div>
             </div>
-        </>
     )
 }
