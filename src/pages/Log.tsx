@@ -167,9 +167,9 @@ export function LogPage() {
                                         <td className="table-data">{log.code}</td>
                                         <td className="table-data">{log.details}</td>
                                         <td className="table-data">{log.date}</td>
-                                        <td className="table-data">{log.observedImg ? (
+                                        <td className="table-data">{log.img ? (
                                             <img
-                                                src={log.observedImg}
+                                                src={log.img}
                                                 alt="Observed"
                                                 className="w-36 h-36 object-cover rounded-lg"
                                             />
