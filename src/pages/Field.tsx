@@ -30,73 +30,62 @@ export function FieldPage() {
 
 
     return(
-        <>
-            <div className="container mt-5">
-                <h5 className="card-header">Fields</h5>
-                <div className="card-body">
+            <div className="flex h-screen">
+                <div className="flex-1 flex flex-col h-screen overflow-hidden">
+                    <div className="p-6 bg-white shadow-md flex-1 overflow-y-auto">
+                        <h5 className="text-2xl font-bold mb-4 text-gray-800">Fields</h5>
+                            <div className="mb-6 flex justify-between items-center">
+                                <button className="button-add-modal" onClick={openAddFieldModal}>+ New Field</button>
+                                <button className="button-update-modal" onClick={openUpdateFieldModal}>Update Field</button>
+                                <form className="flex space-x-2">
+                                    <input className="search-bar" type="search" placeholder="Search Log"/>
+                                    <button className="search-button" type="button">Search</button>
+                                </form>
+                            </div>
 
-                    <div className="row mb-3">
-                        <div className="col-md-6 text-start">
+                            <div className="overflow-auto flex-1">
+                                <table className="table-design">
+                                    <thead className="thead-design">
+                                    <tr>
+                                        <th className="column-header">Code</th>
+                                        <th className="column-header">Name</th>
+                                        <th className="column-header">Location</th>
+                                        <th className="column-header">Size</th>
+                                        <th className="column-header">Image</th>
+                                    </tr>
+                                    </thead>
 
-                            <button className="btn btn-success me-md-2" type="button"
-                                    onClick={openAddFieldModal}>New Field
-                            </button>
-                            {/*<button className="btn btn-warning me-md-2" type="button" data-bs-toggle="modal"
-                                    data-bs-target="#updateEquipmentModal" id="updateEquipmentbtn"
-                                    onClick={openUpdateModal}>Update Equipment
-                            </button>*/}
-                        </div>
-                        <div className="col-md-6">
-                            <form className="d-flex">
-                                <input className="form-control me-2" type="search" placeholder="Search Log"
-                                       aria-label="Search" id="searchBar"/>
-                                <button className="btn btn-primary" type="button" id="logSearchButton">Search
-                                </button>
-                            </form>
-                            <ul id="suggestions"></ul>
-                        </div>
-
-                    </div>
-
-
-                    <div className="row">
-                        <div className="col">
-                            <table className="table" id="log-table">
-                                <thead>
-                                <tr>
-                                    <th>Code</th>
-                                    <th>Name</th>
-                                    <th>Location</th>
-                                    <th>Size</th>
-                                    <th>Image 1</th>
-                                    <th>Image 2</th>
-                                </tr>
-                                </thead>
-
-                                {fields && (
-                                    <tbody>
-                                    {
-                                        fields.map((field: Field) => (
-                                            <tr key={field.code} onClick={() => openUpdateFieldModal(field)}>
-                                                <td>{field.name}</td>
-                                                <td>{field.location}</td>
-                                                <td>{field.size}</td>
-                                                <td>{field.image1}</td>
-                                                <td>{field.image2}</td>
+                                    {fields && (
+                                        <tbody>
+                                        {fields.map((field: Field) => (
+                                            <tr key={field.code}
+                                                className="hover:bg-gray-100 cursor-pointer border-b"
+                                                onClick={() => openUpdateFieldModal(field)}>
+                                                <td className="table-data">{field.code}</td>
+                                                <td className="table-data">{field.name}</td>
+                                                <td className="table-data">{field.location}</td>
+                                                <td className="table-data">{field.size}</td>
+                                                <td className="table-data">{field.img ? (
+                                                    <img
+                                                        src={field.img}
+                                                        alt="Observed"
+                                                        className="w-36 h-36 object-cover rounded-lg"
+                                                    />
+                                                ) : (
+                                                    "No Image"
+                                                )}</td>
                                             </tr>
-                                        ))
-                                    }
-                                    </tbody>
-                                )}
-                            </table>
+                                        ))}
+                                        </tbody>
+                                    )}
+                                </table>
+                            </div>
                         </div>
-                    </div>
 
-                    <AddFieldModal isOpen={isAddModalOpen} onClose={() => setAddModalOpen(false)}/>
-                    <UpdateFieldModal isOpen={isUpdateModalOpen} onClose={() => setUpdateModalOpen(false)}
-                                    selectedField={selectedField}/>
+                        <AddFieldModal isOpen={isAddModalOpen} onClose={() => setAddModalOpen(false)}/>
+                        <UpdateFieldModal isOpen={isUpdateModalOpen} onClose={() => setUpdateModalOpen(false)}
+                                      selectedField={selectedField}/>
                 </div>
             </div>
-        </>
     )
 }
