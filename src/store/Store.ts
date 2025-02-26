@@ -16,3 +16,5 @@ export const store =configureStore({
         field: FieldSlice,
     }
 })
+
+export type Appdispatch = typeof store.dispatch;
