@@ -1,7 +1,8 @@
 import React, {useEffect, useState} from "react";
 import {useDispatch} from "react-redux";
 import {Vehicle} from "../models/Vehicle.ts";
-import {deleteVehicle, updateVehicle} from "../reducers/VehicleSlice.ts";
+import {deleteVehicle, getAllVehicle, updateVehicle} from "../reducers/VehicleSlice.ts";
+import {Appdispatch} from "../store/Store.ts";
 
 
 interface UpdateVehicleModalProps {
@@ -16,7 +17,7 @@ const UpdateVehicleModal: React.FC<UpdateVehicleModalProps> = ({isOpen, onClose,
     const [category, setCategory] = useState('');
     const [fuelType, setFuelType] = useState('');
     const [vehicleStatus, setVehicleStatus] = useState('');
-    const dispatch = useDispatch();
+    const dispatch = useDispatch<Appdispatch>();
 
     useEffect(() => {
         if(selectedVehicle){
@@ -41,13 +42,15 @@ const UpdateVehicleModal: React.FC<UpdateVehicleModalProps> = ({isOpen, onClose,
         }
         dispatch(updateVehicle(vehicle));
         onClose();
+        dispatch(getAllVehicle())
     }
 
     const handleDelete = () => {
         if(selectedVehicle){
-            dispatch(deleteVehicle(selectedVehicle));
+            dispatch(deleteVehicle(selectedVehicle.code));
         }
         onClose();
+        dispatch(getAllVehicle())
     }
     return (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">

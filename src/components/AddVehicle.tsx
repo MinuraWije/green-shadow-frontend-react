@@ -1,7 +1,8 @@
 import {useState} from "react";
 import {useDispatch} from "react-redux";
 import {v4} from "uuid";
-import {addVehicle} from "../reducers/VehicleSlice.ts";
+import {getAllVehicle, saveVehicle} from "../reducers/VehicleSlice.ts";
+import {Appdispatch} from "../store/Store.ts";
 
 interface addVehicleModalProps {
     isOpen: boolean;
@@ -10,11 +11,12 @@ interface addVehicleModalProps {
 
 const AddVehicleModal : React.FC<addVehicleModalProps> = ({isOpen, onClose}) => {
 
+    const dispatch = useDispatch<Appdispatch>();
+
     const [licensePlate, setLicensePlate] = useState("");
     const [category, setCategory] = useState("");
     const [fuelType, setFuelType] = useState("");
     const [vehicleStatus, setVehicleStatus] = useState("");
-    const dispatch = useDispatch();
     if (!isOpen) return  null;
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -27,8 +29,9 @@ const AddVehicleModal : React.FC<addVehicleModalProps> = ({isOpen, onClose}) => 
             fuelType,
             vehicleStatus,
         }
-        dispatch(addVehicle(vehicle));
+        dispatch(saveVehicle(vehicle));
         onClose();
+        dispatch(getAllVehicle());
     }
 
     return (

@@ -1,12 +1,15 @@
-import {useSelector} from "react-redux";
-import {useState} from "react";
+import {useSelector,useDispatch} from "react-redux";
+import {useEffect, useState} from "react";
 import {Vehicle} from "../models/Vehicle.ts";
 import AddVehicleModal from "../components/AddVehicle.tsx";
 import UpdateVehicleModal from "../components/UpdateVehicle.tsx";
+import {getAllVehicle} from "../reducers/VehicleSlice.ts";
+import {Appdispatch} from "../store/Store.ts";
 
 export function VehiclePage() {
     const [selectedVehicle, setSelectedVehicle] = useState<Vehicle | null>(null);
 
+    const dispatch = useDispatch<Appdispatch>();
     const [isAddModalOpen, setAddModalOpen] = useState<boolean>(false);
     const [isUpdateModalOpen, setUpdateModalOpen] = useState<boolean>(false);
 
@@ -15,6 +18,10 @@ export function VehiclePage() {
     function handleSearch(){
         console.log(searchText);
     }
+
+    useEffect(() => {
+        dispatch(getAllVehicle());
+    }, [dispatch]);
 
     function openAddVehicleModal() {
         setAddModalOpen(true);
