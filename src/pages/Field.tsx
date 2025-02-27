@@ -1,12 +1,16 @@
-import {useSelector} from "react-redux";
-import {useState} from "react";
+import {useDispatch, useSelector} from "react-redux";
+import {useEffect, useState} from "react";
 import {Field} from "../models/Field.ts";
 import AddFieldModal from "../components/AddField.tsx";
 import UpdateFieldModal from "../components/UpdateField.tsx";
+import {Appdispatch} from "../store/Store.ts";
+import {getAllField} from "../reducers/FieldSlice.ts";
 
 
 export function FieldPage() {
     const [selectedField, setSelectedField] = useState<Field | null>(null);
+
+    const dispatch = useDispatch<Appdispatch>();
 
     const [isAddModalOpen, setAddModalOpen] = useState<boolean>(false);
     const [isUpdateModalOpen, setUpdateModalOpen] = useState<boolean>(false);
@@ -17,6 +21,10 @@ export function FieldPage() {
         console.log(searchText);
     }
 
+    useEffect(() => {
+        dispatch(getAllField());
+    },[dispatch]);
+
     function openAddFieldModal() {
         setAddModalOpen(true);
     }
@@ -26,7 +34,7 @@ export function FieldPage() {
         setUpdateModalOpen(true);
     }
 
-    const fields = useSelector((state) => state.field);
+    const fields = useSelector((state) => state.field.fields);
 
 
     return(

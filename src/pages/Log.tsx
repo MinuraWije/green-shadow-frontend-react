@@ -98,17 +98,20 @@ export function LogPage() {
 }*/
 
 
-import { useSelector } from "react-redux";
-import { useState } from "react";
+import {useDispatch, useSelector} from "react-redux";
+import {useEffect, useState} from "react";
 import { Log } from "../models/Log.ts";
 import AddLogModal from "../components/AddLog.tsx";
 import UpdateLogModal from "../components/UpdateLog.tsx";
+import {Appdispatch} from "../store/Store.ts";
+import {getAllLog} from "../reducers/LogSlice.ts";
 
 export function LogPage() {
-    console.log("LogPage");
     const [selectedLog, setSelectedLog] = useState<Log | null>(null);
     const [isAddModalOpen, setAddModalOpen] = useState<boolean>(false);
     const [isUpdateModalOpen, setUpdateModalOpen] = useState<boolean>(false);
+
+    const dispatch = useDispatch<Appdispatch>();
 
     function openAddLogModal() {
         setAddModalOpen(true);
@@ -125,7 +128,11 @@ export function LogPage() {
         console.log(searchText);
     }
 
-    const logs = useSelector((state) => state.log);
+    useEffect(() => {
+        dispatch(getAllLog())
+    }, [dispatch]);
+
+    const logs = useSelector((state) => state.log.logs);
 
     return (
         <div className="flex h-screen">

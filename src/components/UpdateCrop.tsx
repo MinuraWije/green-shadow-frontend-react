@@ -1,7 +1,8 @@
 import React, {useEffect, useState} from "react";
 import {Crop} from "../models/Crop.ts";
 import {useDispatch} from "react-redux";
-import {deleteCrop, updateCrop} from "../reducers/CropSlice.ts";
+import {deleteCrop, getAllCrop, updateCrop} from "../reducers/CropSlice.ts";
+import {Appdispatch} from "../store/Store.ts";
 
 
 interface UpdateCropModalProps {
@@ -18,7 +19,7 @@ const UpdateCropModal: React.FC<UpdateCropModalProps> = ({isOpen, onClose, selec
     const [img, setImg] = useState('');
     const [season, setSeason] = useState('');
     const [fieldCode, setFieldCode] = useState('');
-    const dispatch = useDispatch();
+    const dispatch = useDispatch<Appdispatch>();
 
     useEffect(() => {
         if(selectedCrop){
@@ -47,13 +48,15 @@ const UpdateCropModal: React.FC<UpdateCropModalProps> = ({isOpen, onClose, selec
         }
         dispatch(updateCrop(crop));
         onClose();
+        dispatch(getAllCrop())
     }
 
     const handleDelete = () => {
         if(selectedCrop){
-            dispatch(deleteCrop(selectedCrop));
+            dispatch(deleteCrop(selectedCrop.code));
         }
         onClose();
+        dispatch(getAllCrop())
     }
     return (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">

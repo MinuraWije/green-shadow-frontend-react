@@ -1,7 +1,8 @@
 import React, {useEffect, useState} from "react";
 import {Field} from "../models/Field.ts";
 import {useDispatch} from "react-redux";
-import {deleteField, updateField} from "../reducers/FieldSlice.ts";
+import {deleteField, getAllField, updateField} from "../reducers/FieldSlice.ts";
+import {Appdispatch} from "../store/Store.ts";
 
 
 interface UpdateFieldModalProps {
@@ -16,7 +17,7 @@ const UpdateFieldModal: React.FC<UpdateFieldModalProps> = ({isOpen, onClose, sel
     const [location, setLocation] = useState('');
     const [size, setSize] = useState('');
     const [img, setImg] = useState('');
-    const dispatch = useDispatch();
+    const dispatch = useDispatch<Appdispatch>();
 
     useEffect(() => {
         if(selectedField){
@@ -41,13 +42,15 @@ const UpdateFieldModal: React.FC<UpdateFieldModalProps> = ({isOpen, onClose, sel
         }
         dispatch(updateField(field));
         onClose();
+        dispatch(getAllField());
     }
 
     const handleDelete = () => {
         if(selectedField){
-            dispatch(deleteField(selectedField));
+            dispatch(deleteField(selectedField.code));
         }
         onClose();
+        dispatch(getAllField())
     }
     return (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">

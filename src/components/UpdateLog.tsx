@@ -1,7 +1,8 @@
 import React, {useEffect, useState} from "react";
 import {Log} from "../models/Log.ts";
 import {useDispatch} from "react-redux";
-import {deleteLog, updateLog} from "../reducers/LogSlice.ts";
+import {deleteLog, getAllLog, updateLog} from "../reducers/LogSlice.ts";
+import {Appdispatch} from "../store/Store.ts";
 
 
 interface UpdateLogModalProps {
@@ -15,7 +16,7 @@ const UpdateLogModal: React.FC<UpdateLogModalProps> = ({isOpen, onClose, selecte
     const [details, setDetails] = useState('');
     const [date, setDate] = useState('');
     const [img, setImg] = useState('');
-    const dispatch = useDispatch();
+    const dispatch = useDispatch<Appdispatch>();
 
     useEffect(() => {
         if(selectedLog){
@@ -38,13 +39,15 @@ const UpdateLogModal: React.FC<UpdateLogModalProps> = ({isOpen, onClose, selecte
         }
         dispatch(updateLog(log));
         onClose();
+        dispatch(getAllLog())
     }
 
     const handleDelete = () => {
         if(selectedLog){
-            dispatch(deleteLog(selectedLog));
+            dispatch(deleteLog(selectedLog.code));
         }
         onClose();
+        dispatch(getAllLog())
     }
     return (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">

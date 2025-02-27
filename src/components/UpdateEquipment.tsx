@@ -1,7 +1,8 @@
 import React, {useEffect, useState} from "react";
 import {Equipment} from "../models/Equipment.ts";
 import {useDispatch} from "react-redux";
-import {deleteEquipment, updateEquipment} from "../reducers/EquipmentSlice.ts";
+import {deleteEquipment, getAllEquipment, updateEquipment} from "../reducers/EquipmentSlice.ts";
+import {Appdispatch} from "../store/Store.ts";
 
 
 interface UpdateEquipmentModalProps {
@@ -15,7 +16,7 @@ const UpdateEquipmentModal: React.FC<UpdateEquipmentModalProps> = ({isOpen, onCl
     const [name, setName] = useState('');
     const [type, setType] = useState('');
     const [status, setStatus] = useState('');
-    const dispatch = useDispatch();
+    const dispatch = useDispatch<Appdispatch>();
 
     useEffect(() => {
         if(selectedEquipment){
@@ -38,13 +39,15 @@ const UpdateEquipmentModal: React.FC<UpdateEquipmentModalProps> = ({isOpen, onCl
         }
         dispatch(updateEquipment(equipment));
         onClose();
+        dispatch(getAllEquipment());
     }
 
     const handleDelete = () => {
         if(selectedEquipment){
-            dispatch(deleteEquipment(selectedEquipment));
+            dispatch(deleteEquipment(selectedEquipment.id));
         }
         onClose();
+        dispatch(getAllEquipment())
     }
     return (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">

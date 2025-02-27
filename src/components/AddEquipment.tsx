@@ -1,7 +1,8 @@
 import {useState} from "react";
 import {useDispatch} from "react-redux";
-import {addEquipment} from "../reducers/EquipmentSlice.ts";
+import {getAllEquipment, saveEquipment} from "../reducers/EquipmentSlice.ts";
 import {v4} from "uuid";
+import {Appdispatch} from "../store/Store.ts";
 
 interface addEquipmentModalProps {
     isOpen: boolean;
@@ -13,7 +14,7 @@ const AddEquipmentModal : React.FC<addEquipmentModalProps> = ({isOpen, onClose})
     const [name, setName] = useState("");
     const [type, setType] = useState("");
     const [status, setStatus] = useState("");
-    const dispatch = useDispatch();
+    const dispatch = useDispatch<Appdispatch>();
     if (!isOpen) return  null;
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -25,8 +26,9 @@ const AddEquipmentModal : React.FC<addEquipmentModalProps> = ({isOpen, onClose})
             type,
             status,
         }
-        dispatch(addEquipment(equipment));
+        dispatch(saveEquipment(equipment));
         onClose();
+        dispatch(getAllEquipment());
     }
 
     return (

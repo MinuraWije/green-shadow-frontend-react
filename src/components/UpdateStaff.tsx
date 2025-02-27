@@ -1,7 +1,8 @@
 import React, {useEffect, useState} from "react";
 import {Staff} from "../models/Staff.ts";
 import {useDispatch} from "react-redux";
-import {deleteStaff, updateStaff} from "../reducers/StaffSlice.ts";
+import {deleteStaff, getAllStaff, updateStaff} from "../reducers/StaffSlice.ts";
+import {Appdispatch} from "../store/Store.ts";
 
 
 interface UpdateStaffModalProps {
@@ -21,7 +22,7 @@ const UpdateStaffModal: React.FC<UpdateStaffModalProps> = ({isOpen, onClose, sel
     const [dob, setDob] = useState("");
     const [address, setAddress] = useState("");
     const [contactNumber, setContactNumber] = useState("");
-    const dispatch = useDispatch();
+    const dispatch = useDispatch<Appdispatch>();
 
     useEffect(() => {
         if(selectedStaff){
@@ -56,13 +57,15 @@ const UpdateStaffModal: React.FC<UpdateStaffModalProps> = ({isOpen, onClose, sel
         }
         dispatch(updateStaff(staff));
         onClose();
+        dispatch(getAllStaff())
     }
 
     const handleDelete = () => {
         if(selectedStaff){
-            dispatch(deleteStaff(selectedStaff));
+            dispatch(deleteStaff(selectedStaff.id));
         }
         onClose();
+        dispatch(getAllStaff())
     }
     return (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">

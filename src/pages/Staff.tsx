@@ -1,11 +1,15 @@
-import {useSelector} from "react-redux";
-import {useState} from "react";
+import {useDispatch, useSelector} from "react-redux";
+import {useEffect, useState} from "react";
 import {Staff} from "../models/Staff.ts";
 import AddStaffModal from "../components/AddStaff.tsx";
 import UpdateStaffModal from "../components/UpdateStaff.tsx";
+import {Appdispatch} from "../store/Store.ts";
+import {getAllStaff} from "../reducers/StaffSlice.ts";
 
 export function StaffPage() {
     const [selectedStaff, setSelectedStaff] = useState<Staff | null>(null);
+
+    const dispatch = useDispatch<Appdispatch>();
 
     const [isAddModalOpen, setAddModalOpen] = useState<boolean>(false);
     const [isUpdateModalOpen, setUpdateModalOpen] = useState<boolean>(false);
@@ -16,6 +20,10 @@ export function StaffPage() {
         console.log(searchText);
     }
 
+    useEffect(() => {
+        dispatch(getAllStaff())
+    },[dispatch])
+
     function openAddStaffModal() {
         setAddModalOpen(true);
     }
@@ -25,7 +33,7 @@ export function StaffPage() {
         setUpdateModalOpen(true);
     }
 
-    const staffs = useSelector((state) => state.staff);
+    const staffs = useSelector((state) => state.staff.staffs);
 
 
     return(

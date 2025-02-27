@@ -3,8 +3,8 @@ import {useEffect, useState} from "react";
 import {Vehicle} from "../models/Vehicle.ts";
 import AddVehicleModal from "../components/AddVehicle.tsx";
 import UpdateVehicleModal from "../components/UpdateVehicle.tsx";
-import {getAllVehicle} from "../reducers/VehicleSlice.ts";
 import {Appdispatch} from "../store/Store.ts";
+import {getAllVehicle} from "../reducers/VehicleSlice.ts";
 
 export function VehiclePage() {
     const [selectedVehicle, setSelectedVehicle] = useState<Vehicle | null>(null);
@@ -32,7 +32,7 @@ export function VehiclePage() {
         setUpdateModalOpen(true);
     }
 
-    const vehicles = useSelector((state) => state.vehicle);
+    const vehicles = useSelector((state) => state.vehicle.vehicles);
 
 
     return(

@@ -1,7 +1,8 @@
 import {useState} from "react";
 import {useDispatch} from "react-redux";
 import {v4} from "uuid";
-import {addCrop} from "../reducers/CropSlice.ts";
+import {getAllCrop, saveCrop} from "../reducers/CropSlice.ts";
+import {Appdispatch} from "../store/Store.ts";
 
 interface addCropModalProps {
     isOpen: boolean;
@@ -13,10 +14,10 @@ const AddCropModal : React.FC<addCropModalProps> = ({isOpen, onClose}) => {
     const [name, setName] = useState("");
     const [scientificName, setScientificName] = useState("");
     const [category, setCategory] = useState("");
-    const [image, setImage] = useState("");
+    const [img, setImg] = useState("");
     const [season, setSeason] = useState("");
     const [fieldCode, setFieldCode] = useState("");
-    const dispatch = useDispatch();
+    const dispatch = useDispatch<Appdispatch>();
     if (!isOpen) return  null;
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -27,12 +28,13 @@ const AddCropModal : React.FC<addCropModalProps> = ({isOpen, onClose}) => {
             name: name,
             scientificName: scientificName,
             category: category,
-            image: image,
+            img: img,
             season: season,
             fieldCode: fieldCode,
         }
-        dispatch(addCrop(crop));
+        dispatch(saveCrop(crop));
         onClose();
+        dispatch(getAllCrop())
     }
 
     return (
@@ -58,7 +60,7 @@ const AddCropModal : React.FC<addCropModalProps> = ({isOpen, onClose}) => {
                     <div className="mb-3">
                         <label className="modal-label">Image :</label>
                         <input type="file" className="modal-inputs"
-                               required onChange={(e) => setImage(e.target.value)}/>
+                               required onChange={(e) => setImg(e.target.value)}/>
                     </div>
                     <div className="mb-3">
                         <label className="modal-label">Season :</label>

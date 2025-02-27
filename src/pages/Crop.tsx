@@ -1,20 +1,27 @@
-import {useSelector} from "react-redux";
-import {useState} from "react";
+import {useDispatch, useSelector} from "react-redux";
+import {useEffect, useState} from "react";
 import {Crop} from "../models/Crop.ts";
 import AddCropModal from "../components/AddCrop.tsx";
 import UpdateCropModal from "../components/UpdateCrop.tsx";
+import {Appdispatch} from "../store/Store.ts";
+import {getAllCrop} from "../reducers/CropSlice.ts";
 
 export function CropPage() {
     const [selectedCrop, setSelectedCrop] = useState<Crop | null>(null);
 
+    const dispatch = useDispatch<Appdispatch>();
     const [isAddModalOpen, setAddModalOpen] = useState<boolean>(false);
     const [isUpdateModalOpen, setUpdateModalOpen] = useState<boolean>(false);
 
-    /*const [searchText, setSearchText] = useState("");
+    const [searchText, setSearchText] = useState("");
 
     function handleSearch(){
         console.log(searchText);
-    }*/
+    }
+
+    useEffect(() => {
+        dispatch(getAllCrop())
+    },[dispatch])
 
     function openAddCropModal() {
         setAddModalOpen(true);
@@ -25,7 +32,7 @@ export function CropPage() {
         setUpdateModalOpen(true);
     }
 
-    const crops = useSelector((state) => state.crop);
+    const crops = useSelector((state) => state.crop.crops);
 
 
     return(

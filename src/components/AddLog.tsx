@@ -1,7 +1,8 @@
 import {useState} from "react";
 import {useDispatch} from "react-redux";
 import {v4} from "uuid";
-import {addLog} from "../reducers/LogSlice.ts";
+import {getAllLog, saveLog} from "../reducers/LogSlice.ts";
+import {Appdispatch} from "../store/Store.ts";
 
 interface addLogModalProps {
     isOpen: boolean;
@@ -13,7 +14,7 @@ const AddLogModal : React.FC<addLogModalProps> = ({isOpen, onClose}) => {
     const [details, setDetails] = useState("");
     const [date, setDate] = useState("");
     const [img, setImg] = useState("");
-    const dispatch = useDispatch();
+    const dispatch = useDispatch<Appdispatch>();
     if (!isOpen) return  null;
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -25,8 +26,9 @@ const AddLogModal : React.FC<addLogModalProps> = ({isOpen, onClose}) => {
             date: date,
             img: img,
         }
-        dispatch(addLog(log));
+        dispatch(saveLog(log));
         onClose();
+        dispatch(getAllLog())
     }
 
     return (

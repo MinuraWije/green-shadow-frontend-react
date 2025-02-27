@@ -1,11 +1,15 @@
-import {useSelector} from "react-redux";
-import {useState} from "react";
+import {useDispatch, useSelector} from "react-redux";
+import {useEffect, useState} from "react";
 import AddEquipmentModal from "../components/AddEquipment.tsx";
 import UpdateEquipmentModal from "../components/UpdateEquipment.tsx";
 import {Equipment} from "../models/Equipment.ts";
+import {Appdispatch} from "../store/Store.ts";
+import {getAllEquipment} from "../reducers/EquipmentSlice.ts";
 
 export function EquipmentPage() {
     const [selectedEquipment, setSelectedEquipment] = useState<Equipment | null>(null);
+
+    const dispatch = useDispatch<Appdispatch>();
 
     const [isAddModalOpen, setAddModalOpen] = useState<boolean>(false);
     const [isUpdateModalOpen, setUpdateModalOpen] = useState<boolean>(false);
@@ -16,6 +20,10 @@ export function EquipmentPage() {
         console.log(searchText);
     }
 
+    useEffect(() => {
+        dispatch(getAllEquipment());
+    }, [dispatch]);
+
     function openAddEquipmentModal() {
         setAddModalOpen(true);
     }
@@ -25,7 +33,7 @@ export function EquipmentPage() {
         setUpdateModalOpen(true);
     }
 
-    const equipments = useSelector((state) => state.equipment);
+    const equipments = useSelector((state) => state.equipment.equipments);
 
 
     return(

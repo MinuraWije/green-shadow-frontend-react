@@ -1,7 +1,8 @@
 import {useState} from "react";
 import {useDispatch} from "react-redux";
 import {v4} from "uuid";
-import {addStaff} from "../reducers/StaffSlice.ts";
+import {getAllStaff, saveStaff} from "../reducers/StaffSlice.ts";
+import {Appdispatch} from "../store/Store.ts";
 
 interface addStaffModalProps {
     isOpen: boolean;
@@ -19,7 +20,7 @@ const AddStaffModal : React.FC<addStaffModalProps> = ({isOpen, onClose}) => {
     const [dob, setDob] = useState("");
     const [address, setAddress] = useState("");
     const [contactNumber, setContactNumber] = useState("");
-    const dispatch = useDispatch();
+    const dispatch = useDispatch<Appdispatch>();
     if (!isOpen) return  null;
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -37,8 +38,9 @@ const AddStaffModal : React.FC<addStaffModalProps> = ({isOpen, onClose}) => {
             address: address,
             contactNumber: contactNumber,
         }
-        dispatch(addStaff(staff));
+        dispatch(saveStaff(staff));
         onClose();
+        dispatch(getAllStaff());
     }
 
     return (

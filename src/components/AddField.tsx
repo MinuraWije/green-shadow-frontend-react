@@ -1,7 +1,8 @@
 import {useState} from "react";
 import {useDispatch} from "react-redux";
 import {v4} from "uuid";
-import {addField} from "../reducers/FieldSlice.ts";
+import {getAllField, saveField} from "../reducers/FieldSlice.ts";
+import {Appdispatch} from "../store/Store.ts";
 
 interface addFieldModalProps {
     isOpen: boolean;
@@ -14,7 +15,7 @@ const AddFieldModal : React.FC<addFieldModalProps> = ({isOpen, onClose}) => {
     const [location, setLocation] = useState("");
     const [size, setSize] = useState("");
     const [img, setImg] = useState("");
-    const dispatch = useDispatch();
+    const dispatch = useDispatch<Appdispatch>();
     if (!isOpen) return  null;
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -27,8 +28,9 @@ const AddFieldModal : React.FC<addFieldModalProps> = ({isOpen, onClose}) => {
             size: size,
             img: img,
         }
-        dispatch(addField(field));
+        dispatch(saveField(field));
         onClose();
+        dispatch(getAllField())
     }
 
     return (
