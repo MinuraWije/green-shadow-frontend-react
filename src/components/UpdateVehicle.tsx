@@ -59,22 +59,22 @@ const UpdateVehicleModal: React.FC<UpdateVehicleModalProps> = ({isOpen, onClose,
                 <form onSubmit={handleSubmit}>
                     <div className="mb-3">
                         <label className="modal-label">License Plate :</label>
-                        <input type="text" className="modal-inputs" required
+                        <input type="text" value={licensePlate} className="modal-inputs" required
                                onChange={(e) => setLicensePlate(e.target.value)}/>
                     </div>
                     <div className="mb-3">
                         <label className="modal-label">Category :</label>
-                        <input type="text" className="modal-inputs"
+                        <input type="text" value={category} className="modal-inputs"
                                onChange={(e) => setCategory(e.target.value)}/>
                     </div>
                     <div className="mb-3">
                         <label className="modal-label">Fuel Type :</label>
-                        <input type="text" className="modal-inputs"
+                        <input type="text" value={fuelType} className="modal-inputs"
                                onChange={(e) => setFuelType(e.target.value)}/>
                     </div>
                     <div className="mb-3">
                         <label className="modal-label">Status</label>
-                        <select className="modal-inputs"
+                        <select className="modal-inputs" value={vehicleStatus}
                                 onChange={(e) => setVehicleStatus(e.target.value)}>
                             <option defaultValue={"Select"}>Select</option>
                             <option value="AVAILABLE">Available</option>

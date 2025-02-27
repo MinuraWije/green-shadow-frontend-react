@@ -96,7 +96,7 @@ const staffSlice = createSlice({
             })
         builder
             .addCase(getAllStaff.fulfilled,(state, action)=>{
-                state.staffs = action.payload
+                state.staffs = action.payload.staffs || []
                 console.log("Get all staffs successful")
             })
             .addCase(getAllStaff.pending,(state, action)=>{

@@ -4,7 +4,7 @@ import api from "../api/api.ts"
 
 //const initialState: Vehicle[] = [];
 const initialState = {
-    vehicles: [{}],
+    vehicles: [],
 }
 
 export const saveVehicle = createAsyncThunk(
@@ -47,10 +47,12 @@ export const getAllVehicle = createAsyncThunk(
     'vehicle/getAllVehicle',
     async()=>{
         try{
-            const response = await api.get('get/vehicle')
+            const response = await api.get('get/vehicle');
+            console.log("Fetched Vehicles:", response.data);
             return response.data;
         }catch (error){
             alert("Error getting all vehicles! Error: " + error)
+            return [];
         }
     }
 )
@@ -63,8 +65,11 @@ const vehicleSlice = createSlice({
     extraReducers:(builder)=>{
         builder
             .addCase(saveVehicle.fulfilled,(state,action)=>{
-                state.vehicles.push(action.payload)
-                alert("Vehicle saved successfully")
+                if(action.payload){
+                    state.vehicles.push(action.payload)
+                    alert("Vehicle saved successfully")
+                }
+
             })
             .addCase(saveVehicle.pending,(state,action)=>{
                 console.log("Save vehicle is pending.")
@@ -96,7 +101,7 @@ const vehicleSlice = createSlice({
             })
         builder
             .addCase(getAllVehicle.fulfilled,(state, action)=>{
-                state.vehicles = action.payload
+                state.vehicles = action.payload.vehicles || [];
                 console.log("Get all vehicles successful")
             })
             .addCase(getAllVehicle.pending,(state, action)=>{

@@ -96,7 +96,7 @@ const fieldSlice = createSlice({
             })
         builder
             .addCase(getAllField.fulfilled,(state, action)=>{
-                state.fields = action.payload
+                state.fields = action.payload.fields || []
                 console.log("Get all fields successful")
             })
             .addCase(getAllField.pending,(state, action)=>{

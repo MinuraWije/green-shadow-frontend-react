@@ -42,7 +42,7 @@ export function CropPage() {
                         <h5 className="text-2xl font-bold mb-4 text-gray-800">Crops</h5>
                         <div className="mb-6 flex justify-between items-center">
                             <button className="button-add-modal" type="button" onClick={openAddCropModal}>+ New Crop</button>
-                            <button className="button-update-modal" type="button" onClick={openUpdateCropModal}>Update Equipment</button>
+                            <button className="button-update-modal" type="button" onClick={openUpdateCropModal}>Update Crop</button>
                             <form className="flex space-x-2">
                                 <input className="search-bar" type="search" placeholder="Search Log"/>
                                 <button className="search-button" type="button">Search</button>

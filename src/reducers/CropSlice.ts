@@ -97,7 +97,7 @@ const cropSlice = createSlice({
             })
         builder
             .addCase(getAllCrop.fulfilled,(state, action)=>{
-                state.crops = action.payload
+                state.crops = action.payload.crops || []
                 console.log("Get all crops successful")
             })
             .addCase(getAllCrop.pending,(state, action)=>{

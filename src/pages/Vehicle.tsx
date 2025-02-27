@@ -32,7 +32,7 @@ export function VehiclePage() {
         setUpdateModalOpen(true);
     }
 
-    const vehicles = useSelector((state) => state.vehicle.vehicles);
+    const vehicles = useSelector(state => state.vehicle.vehicles);
 
 
     return(
@@ -62,7 +62,7 @@ export function VehiclePage() {
                                 </tr>
                                 </thead>
 
-                                {vehicles && (
+                                {/*{vehicles && (
                                     <tbody>
                                     {vehicles.map((vehicle: Vehicle) => (
                                             <tr key={vehicle.code}
@@ -77,7 +77,21 @@ export function VehiclePage() {
                                         ))
                                     }
                                     </tbody>
-                                )}
+                                )}*/}
+                                <tbody>
+                                {vehicles.map((vehicle: Vehicle) => (
+                                    <tr key={vehicle.code}
+                                        className="hover:bg-gray-100 cursor-pointer border-b"
+                                        onClick={() => openUpdateVehicleModal(vehicle)}>
+                                        <td className="table-data">{vehicle.code}</td>
+                                        <td className="table-data">{vehicle.licensePlate}</td>
+                                        <td className="table-data">{vehicle.category}</td>
+                                        <td className="table-data">{vehicle.fuelType}</td>
+                                        <td className="table-data">{vehicle.vehicleStatus}</td>
+                                    </tr>
+                                ))
+                                }
+                                </tbody>
                             </table>
                         </div>
                     </div>

@@ -95,7 +95,7 @@ const equipmentSlice = createSlice({
             })
         builder
             .addCase(getAllEquipment.fulfilled,(state,action)=>{
-                state.equipments = action.payload
+                state.equipments = action.payload.equipment || []
                 console.log("Get all equipment successful")
             })
             .addCase(getAllEquipment.pending,(state,action)=>{

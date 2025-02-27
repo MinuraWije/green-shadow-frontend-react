@@ -33,7 +33,7 @@ export function EquipmentPage() {
         setUpdateModalOpen(true);
     }
 
-    const equipments = useSelector((state) => state.equipment.equipments);
+    const equipments = useSelector(state => state.equipment.equipments);
 
 
     return(
@@ -62,7 +62,7 @@ export function EquipmentPage() {
                                 </tr>
                                 </thead>
 
-                                {equipments && (
+                                {/*{equipments && (
                                     <tbody>
                                     {equipments.map((equipment: Equipment) => (
                                             <tr key={equipment.id}
@@ -76,7 +76,20 @@ export function EquipmentPage() {
                                         ))
                                     }
                                     </tbody>
-                                )}
+                                )}*/}
+                                <tbody>
+                                {equipments.map((equipment: Equipment) => (
+                                    <tr key={equipment.id}
+                                        className="hover:bg-gray-100 cursor-pointer border-b"
+                                        onClick={() => openUpdateEquipmentModal(equipment)}>
+                                        <td className="table-data">{equipment.id}</td>
+                                        <td className="table-data">{equipment.name}</td>
+                                        <td className="table-data">{equipment.type}</td>
+                                        <td className="table-data">{equipment.status}</td>
+                                    </tr>
+                                ))
+                                }
+                                </tbody>
                             </table>
                         </div>
                     </div>

@@ -96,7 +96,7 @@ const logSlice = createSlice({
             })
         builder
             .addCase(getAllLog.fulfilled, (state, action) => {
-                state.logs = action.payload
+                state.logs = action.payload.logs || []
                 console.log("Get all logs successful")
             })
             .addCase(getAllLog.pending, (state, action) => {
