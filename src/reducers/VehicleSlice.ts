@@ -73,36 +73,36 @@ const vehicleSlice = createSlice({
                 alert("Vehicle save rejected.")
             })
         builder
-            .addCase(updateVehicle.fulfilled,(state,action)=>{
+            .addCase(updateVehicle.fulfilled,(state, action)=>{
                 state.vehicles.push(action.payload)
                 alert("Vehicle updated successfully")
             })
-            .addCase(updateVehicle.pending,(state,action)=>{
+            .addCase(updateVehicle.pending,(state, action)=>{
                 console.log("Update vehicle is pending.")
             })
-            .addCase(updateVehicle.rejected,(state,action)=>{
+            .addCase(updateVehicle.rejected,(state, action)=>{
                 alert("Vehicle update rejected")
             })
         builder
-            .addCase(deleteVehicle.fulfilled,(state,action)=>{
+            .addCase(deleteVehicle.fulfilled,(state, action)=>{
                 state.vehicles = state.vehicles.filter((v:Vehicle)=> v.code !== action.payload.code)
                 alert("Vehicle deleted successfully")
             })
-            .addCase(deleteVehicle.pending,(state,action)=>{
+            .addCase(deleteVehicle.pending,(state, action)=>{
                 console.log("Delete vehicle is pending.")
             })
-            .addCase(deleteVehicle.rejected,(state,action)=>{
+            .addCase(deleteVehicle.rejected,(state, action)=>{
                 alert("Vehicle delete rejected")
             })
         builder
-            .addCase(getAllVehicle.fulfilled,(state,action)=>{
+            .addCase(getAllVehicle.fulfilled,(state, action)=>{
                 state.vehicles = action.payload
                 console.log("Get all vehicles successful")
             })
-            .addCase(getAllVehicle.pending,(state,action)=>{
+            .addCase(getAllVehicle.pending,(state, action)=>{
                 console.log("Get all vehicle is pending.")
             })
-            .addCase(getAllVehicle.rejected,(state,action)=>{
+            .addCase(getAllVehicle.rejected,(state, action)=>{
                 alert("Get all vehicle rejected")
             })
     }
