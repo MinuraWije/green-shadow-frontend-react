@@ -1,5 +1,5 @@
 import './App.css'
-import{RouterProvider, createBrowserRouter} from "react-router-dom";
+import {RouterProvider, createBrowserRouter, Navigate} from "react-router-dom";
 import {RootLayout} from "./components/RootLayout.tsx";
 import {Dashboard} from "./pages/Dashboard.tsx";
 import {VehiclePage} from "./pages/Vehicle.tsx";
@@ -8,9 +8,36 @@ import {LogPage} from "./pages/Log.tsx";
 import {StaffPage} from "./pages/Staff.tsx";
 import {FieldPage} from "./pages/Field.tsx";
 import {CropPage} from "./pages/Crop.tsx";
+import {useSelector} from "react-redux";
+import {Login} from "./pages/Login.tsx";
 
 function App() {
+    const isAuthenticated = useSelector((state)=>state.user.isAuthenticated);
+
     const routes = createBrowserRouter([
+        {
+            path: "/",
+            element: <Navigate to="/login" />, // Redirect to login by default
+        },
+        {
+            path: "/login",
+            element: <Login />,
+        },
+        {
+            path: "/home",
+            element: isAuthenticated ? <RootLayout /> : <Navigate to="/login" />,
+            children: [
+                { path: '', element: <Dashboard /> }, // Default child route
+                { path : 'vehicle', element : <VehiclePage />},
+                { path : 'equipment', element : <EquipmentPage />},
+                { path : 'log', element : <LogPage />},
+                { path : 'staff', element : <StaffPage />},
+                { path : 'field', element : <FieldPage />},
+                { path : 'crop', element : <CropPage />},
+            ],
+        },
+    ]);
+    /*const routes = createBrowserRouter([
         {
             path: '',
             element : <RootLayout/>,
@@ -24,7 +51,7 @@ function App() {
                 { path : 'crop', element : <CropPage />},
             ]
         }
-    ])
+    ])*/
 
   return (
     <>
