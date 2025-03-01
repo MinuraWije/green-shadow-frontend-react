@@ -17,11 +17,11 @@ function App() {
             children : [
                 { path : '', element : <Dashboard />},
                 { path : 'vehicle', element : <VehiclePage />},
-                { path : 'equipment', element : <EquipmentPage />},
+                //{ path : 'equipment', element : <EquipmentPage />},
                 { path : 'log', element : <LogPage />},
                 { path : 'staff', element : <StaffPage />},
                 { path : 'field', element : <FieldPage />},
-                { path : 'crop', element : <CropPage />},
+                //{ path : 'crop', element : <CropPage />},
             ]
         }
     ])
