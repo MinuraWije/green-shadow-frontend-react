@@ -15,7 +15,7 @@ export const registerUser= createAsyncThunk(
     'user/register',
     async (user : User)=>{
         try{
-            const response = await api.post('/auth/register', user,{withCredentials: true});
+            const response = await api.post('/register', {user},{withCredentials: true});
             return response.data;
         }catch(err){
             console.log(err);
@@ -26,7 +26,9 @@ export const loginUser= createAsyncThunk(
     'user/login',
     async (user : User)=>{
         try{
-            const response = await api.post('/auth/login', user,{withCredentials: true});
+            const response = await api.post('/login', {user},{withCredentials: true});
+            localStorage.setItem('access-token', response.data.token);
+            console.log("Token stored",localStorage.getItem("access-token"));
             return response.data;
         }catch(err){
             console.log(err);
