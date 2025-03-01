@@ -7,7 +7,7 @@ const api = axios.create({
 
 api.interceptors.request.use(
     async (config) => {
-        const accessToken = localStorage.getItem("access-token");
+        const accessToken = localStorage.getItem("accessToken");
         if (accessToken) {
             config.headers.Authorization = `Bearer ${accessToken}`;
         }
@@ -31,14 +31,14 @@ async function handleTokenRefresh(error) {
         const { data } = await api.post("/refresh-token", {}, { withCredentials: true });
 
         // Storing new access token
-        localStorage.setItem("access-token", data.accessToken);
+        localStorage.setItem("accessToken", data.accessToken);
 
         // Retry failed request with new token
         error.config.headers.Authorization = `Bearer ${data.accessToken}`;
         return api(error.config);
     } catch (e) {
         console.error("Session expired, redirecting to login...");
-        localStorage.removeItem("access-token");
+        localStorage.removeItem("accessToken");
         window.location.href = "/login";
     }
 }
