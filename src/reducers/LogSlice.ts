@@ -12,7 +12,13 @@ export const saveLog = createAsyncThunk(
     'log/saveLog',
     async(log:Log)=>{
         try{
-            const response = await api.post('/post/log', log)
+            const inst = new FormData();
+            inst.append("code", log.code);
+            inst.append("details", log.details);
+            inst.append("date", log.date);
+            inst.append("img", log.img);
+            console.log("img", log.img);
+            const response = await api.post('/post/log', inst)
             return response.data;
         }catch (error){
             alert("Error saving log! Error: " + error)
@@ -36,7 +42,12 @@ export const updateLog = createAsyncThunk(
     'log/updateLog',
     async(log:Log)=>{
         try{
-            const response = await api.put(`log/${log.code}`,log)
+            const inst = new FormData();
+            inst.append("code", log.code);
+            inst.append("details", log.details);
+            inst.append("date", log.date);
+            inst.append("img", log.img);
+            const response = await api.put(`log/${log.code}`,inst)
             return response.data;
         }catch (error){
             alert("Error updating log! Error: " + error)

@@ -167,24 +167,47 @@ export function LogPage() {
                             </thead>
                             {logs && (
                                 <tbody>
-                                {logs.map((log: Log) => (
-                                    <tr key={log.code}
-                                        className="hover:bg-gray-100 cursor-pointer border-b"
-                                        onClick={() => openUpdateLogModal(log)}>
-                                        <td className="table-data">{log.code}</td>
-                                        <td className="table-data">{log.details}</td>
-                                        <td className="table-data">{log.date}</td>
-                                        <td className="table-data">{log.img ? (
-                                            <img
-                                                src={log.img}
-                                                alt="Observed"
-                                                className="w-36 h-36 object-cover rounded-lg"
-                                            />
-                                        ) : (
-                                            "No Image"
-                                        )}</td>
-                                    </tr>
-                                ))}
+                                {logs.map((log: Log) => {
+                                    return (
+                                        <tr key={log.code}
+                                            className="hover:bg-gray-100 cursor-pointer border-b"
+                                            onClick={() => openUpdateLogModal(log)}>
+                                            <td className="table-data">{log.code}</td>
+                                            <td className="table-data">{log.details}</td>
+                                            <td className="table-data">{log.date}</td>
+                                            <td className="table-data">
+                                                {log.img ? (
+                                                    <img
+                                                        src={`data:image/jpeg;base64,${log.img}`}
+                                                        alt="Observed"
+                                                        className="w-36 h-36 object-cover rounded-lg"
+                                                    />
+                                                ) : (
+                                                    "No Image"
+                                                )}
+                                            </td>
+                                        </tr>
+                                    );
+                                }
+                                //     (
+                                //     <tr key={log.code}
+                                //         className="hover:bg-gray-100 cursor-pointer border-b"
+                                //         onClick={() => openUpdateLogModal(log)}>
+                                //         <td className="table-data">{log.code}</td>
+                                //         <td className="table-data">{log.details}</td>
+                                //         <td className="table-data">{log.date}</td>
+                                //         <td className="table-data">{log.img ? (
+                                //             <img
+                                //                 src={'data:image/jpeg;base64,${log.img}'}
+                                //                 alt="Observed"
+                                //                 className="w-36 h-36 object-cover rounded-lg"
+                                //             />
+                                //         ) : (
+                                //             "No Image"
+                                //         )}</td>
+                                //     </tr>
+                                // )
+                                    )}
                                 </tbody>
                             )}
                         </table>
