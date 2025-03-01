@@ -27,8 +27,8 @@ export const loginUser= createAsyncThunk(
     async (user : User)=>{
         try{
             const response = await api.post('/login', {user},{withCredentials: true});
-            localStorage.setItem('access-token', response.data.token);
-            console.log("Token stored",localStorage.getItem("access-token"));
+            localStorage.setItem('accessToken', response.data.token);
+            console.log("Token stored",localStorage.getItem("accessToken"));
             return response.data;
         }catch(err){
             console.log(err);
@@ -41,7 +41,7 @@ const userSlice = createSlice({
     reducers:{
         logOutUser(state){
             state.isAuthenticated = false;
-            sessionStorage.removeItem('access-token');
+            sessionStorage.removeItem('accessToken');
         }
     },
     extraReducers(builder){
@@ -62,7 +62,7 @@ const userSlice = createSlice({
             })
             .addCase(loginUser.fulfilled,(state, action)=>{
                 state.jwt_token = action.payload.accessToken;
-                sessionStorage.setItem("access-token",action.payload.accessToken)
+                sessionStorage.setItem("accessToken",action.payload.accessToken)
                 state.refresh_token = action.payload.refreshToken;
                 state.isAuthenticated = true;
             })
