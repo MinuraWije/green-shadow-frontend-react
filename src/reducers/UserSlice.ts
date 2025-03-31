@@ -27,7 +27,7 @@ export const loginUser= createAsyncThunk(
     async (user : User)=>{
         try{
             const response = await api.post('/login', {user},{withCredentials: true});
-            localStorage.setItem('accessToken', response.data.token);
+            localStorage.setItem('accessToken', response.data.accessToken);
             console.log("Token stored",localStorage.getItem("accessToken"));
             return response.data;
         }catch(err){
@@ -61,9 +61,9 @@ const userSlice = createSlice({
                 state.isAuthenticated = false;
             })
             .addCase(loginUser.fulfilled,(state, action)=>{
-                state.jwt_token = action.payload.accessToken;
+                /*state.jwt_token = action.payload.accessToken;
                 sessionStorage.setItem("accessToken",action.payload.accessToken)
-                state.refresh_token = action.payload.refreshToken;
+                state.refresh_token = action.payload.refreshToken;*/
                 state.isAuthenticated = true;
             })
             .addCase(loginUser.pending,(state, action)=>{
