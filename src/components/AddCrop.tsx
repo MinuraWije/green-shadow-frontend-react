@@ -37,6 +37,13 @@ const AddCropModal : React.FC<addCropModalProps> = ({isOpen, onClose}) => {
         dispatch(getAllCrop())
     }
 
+    function handleOnChange (event) {
+        const file = event.target.files?.[0]
+        if (file) {
+            setImg(file)
+        }
+    }
+
     return (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
             <div className="bg-white p-6 rounded-lg shadow-lg w-1/3">
@@ -60,7 +67,7 @@ const AddCropModal : React.FC<addCropModalProps> = ({isOpen, onClose}) => {
                     <div className="mb-3">
                         <label className="modal-label">Image :</label>
                         <input type="file" className="modal-inputs"
-                               required onChange={(e) => setImg(e.target.value)}/>
+                               required onChange={handleOnChange}/>
                     </div>
                     <div className="mb-3">
                         <label className="modal-label">Season :</label>
