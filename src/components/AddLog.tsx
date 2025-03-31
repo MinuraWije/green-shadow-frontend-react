@@ -31,6 +31,13 @@ const AddLogModal : React.FC<addLogModalProps> = ({isOpen, onClose}) => {
         dispatch(getAllLog())
     }
 
+    function handleOnChange (event) {
+        const file = event.target.files?.[0]
+        if (file) {
+            setImg(file)
+        }
+    }
+
     return (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
             <div className="bg-white p-6 rounded-lg shadow-lg w-1/3">
@@ -49,7 +56,7 @@ const AddLogModal : React.FC<addLogModalProps> = ({isOpen, onClose}) => {
                         <div className="mb-3">
                             <label className="modal-label">Observed Img :</label>
                             <input type="file" className="modal-inputs"
-                                   required onChange={(e) => setImg(e.target.value)}/>
+                                   required onChange={handleOnChange}/>
                         </div>
                         <div className="flex justify-end space-x-2">
                             <button type="submit" className="modal-button-add" id="btnAddLog">Add</button>

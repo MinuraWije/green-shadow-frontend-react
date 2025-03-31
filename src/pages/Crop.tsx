@@ -74,7 +74,7 @@ export function CropPage() {
                                             <td className="table-data">{crop.category}</td>
                                             <td className="table-data">{crop.img ? (
                                                 <img
-                                                    src={crop.img}
+                                                    src={`data:image/jpeg;base64,${crop.img}`}
                                                     alt="Observed"
                                                     className="w-36 h-36 object-cover rounded-lg"
                                                 />

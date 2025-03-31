@@ -75,7 +75,7 @@ export function FieldPage() {
                                                 <td className="table-data">{field.size}</td>
                                                 <td className="table-data">{field.img ? (
                                                     <img
-                                                        src={field.img}
+                                                        src={`data:image/jpeg;base64,${field.img}`}
                                                         alt="Observed"
                                                         className="w-36 h-36 object-cover rounded-lg"
                                                     />

@@ -174,7 +174,18 @@ export function LogPage() {
                                         <td className="table-data">{log.code}</td>
                                         <td className="table-data">{log.details}</td>
                                         <td className="table-data">{log.date}</td>
-                                        <td className="table-data">{log.img ? (
+                                        <td className="table-data">
+                                            {log.img ? (
+                                                <img
+                                                    src={`data:image/jpeg;base64,${log.img}`}
+                                                    alt="Observed"
+                                                    className="w-36 h-36 object-cover rounded-lg"
+                                                />
+                                            ) : (
+                                                "No Image"
+                                            )}
+                                        </td>
+                                        {/*<td className="table-data">{log.img ? (
                                             <img
                                                 src={log.img}
                                                 alt="Observed"
@@ -182,7 +193,7 @@ export function LogPage() {
                                             />
                                         ) : (
                                             "No Image"
-                                        )}</td>
+                                        )}</td>*/}
                                     </tr>
                                 ))}
                                 </tbody>

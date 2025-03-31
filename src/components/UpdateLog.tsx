@@ -49,6 +49,14 @@ const UpdateLogModal: React.FC<UpdateLogModalProps> = ({isOpen, onClose, selecte
         onClose();
         dispatch(getAllLog())
     }
+
+    function  handleOnChange (event) {
+        const file = event.target.files?.[0]
+        if (file) {
+            setImg(file)
+        }
+    }
+
     return (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
             <div className="bg-white p-6 rounded-lg shadow-lg w-1/3">
@@ -67,7 +75,7 @@ const UpdateLogModal: React.FC<UpdateLogModalProps> = ({isOpen, onClose, selecte
                     <div className="mb-3">
                         <label className="modal-label">Observed Img :</label>
                         <input type="file" className="modal-inputs"
-                               required onChange={(e) => setImg(e.target.value)}/>
+                               required onChange={handleOnChange}/>
                     </div>
 
                     <div className="flex justify-end space-x-2">
