@@ -52,6 +52,14 @@ const UpdateFieldModal: React.FC<UpdateFieldModalProps> = ({isOpen, onClose, sel
         onClose();
         dispatch(getAllField())
     }
+
+    function handleOnChange (event) {
+        const file = event.target.files?.[0]
+        if (file) {
+            setImg(file)
+        }
+    }
+
     return (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
             <div className="bg-white p-6 rounded-lg shadow-lg w-1/3">
@@ -75,7 +83,7 @@ const UpdateFieldModal: React.FC<UpdateFieldModalProps> = ({isOpen, onClose, sel
                     <div className="mb-3">
                         <label className="modal-label">Image :</label>
                         <input type="file" className="modal-inputs"
-                               required onChange={(e) => setImg(e.target.value)}/>
+                               required onChange={handleOnChange}/>
                     </div>
                     <div className="flex justify-end space-x-2">
                         <button type="submit" className="modal-button-update">Update</button>
