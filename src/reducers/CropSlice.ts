@@ -12,7 +12,15 @@ export const saveCrop = createAsyncThunk(
     'crop/saveCrop',
     async(crop:Crop)=>{
         try{
-            const response = await api.post('/post/crop', crop)
+            const inst = new FormData();
+            inst.append("code", crop.code);
+            inst.append("name", crop.name);
+            inst.append("scientificName", crop.scientificName);
+            inst.append("category", crop.category);
+            inst.append("img", crop.img);
+            inst.append("season", crop.season);
+            inst.append("fieldCode", crop.fieldCode);
+            const response = await api.post('/post/crop', inst)
             return response.data;
         }catch (error){
             alert("Error saving crop! Error: " + error)
@@ -36,7 +44,15 @@ export const updateCrop = createAsyncThunk(
     'crop/updateCrop',
     async(crop:Crop)=>{
         try{
-            const response = await api.put(`crop/${crop.code}`,crop)
+            const inst = new FormData();
+            inst.append("code", crop.code);
+            inst.append("name", crop.name);
+            inst.append("scientificName", crop.scientificName);
+            inst.append("category", crop.category);
+            inst.append("img", crop.img);
+            inst.append("season", crop.season);
+            inst.append("fieldCode", crop.fieldCode);
+            const response = await api.put(`crop/${crop.code}`,inst)
             return response.data;
         }catch (error){
             alert("Error updating crop! Error: " + error)
