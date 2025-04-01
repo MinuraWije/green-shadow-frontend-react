@@ -12,7 +12,13 @@ export const saveField = createAsyncThunk(
     'field/saveField',
     async(field:Field)=>{
         try{
-            const response = await api.post('/post/field', field)
+            const inst = new FormData();
+            inst.append("code", field.code);
+            inst.append("name", field.name);
+            inst.append("location", field.location);
+            inst.append("size", field.size);
+            inst.append("img", field.img);
+            const response = await api.post('/post/field', inst)
             return response.data;
         }catch (error){
             alert("Error saving field! Error: " + error)
@@ -36,7 +42,13 @@ export const updateField = createAsyncThunk(
     'field/updateField',
     async(field:Field)=>{
         try{
-            const response = await api.put(`field/${field.code}`,field)
+            const inst = new FormData();
+            inst.append("code", field.code);
+            inst.append("name", field.name);
+            inst.append("location", field.location);
+            inst.append("size", field.size);
+            inst.append("img", field.img);
+            const response = await api.put(`field/${field.code}`,inst)
             return response.data;
         }catch (error){
             alert("Error updating field! Error: " + error)
