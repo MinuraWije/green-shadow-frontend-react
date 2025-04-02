@@ -34,9 +34,9 @@ export function Navigation() {
                         <li>
                             <Link to="vehicle" className="links">Vehicle</Link>
                         </li>
-                        <li>
+                        {/*<li>
                             <Link to="equipment" className="links">Equipment</Link>
-                        </li>
+                        </li>*/}
                         <li>
                             <Link to="log" className="links" relative="path">Log</Link>
                         </li>
@@ -46,9 +46,9 @@ export function Navigation() {
                         <li>
                             <Link to="field" className="links">Field</Link>
                         </li>
-                        <li>
+                        {/*<li>
                             <Link to="crop" className="links">Crop</Link>
-                        </li>
+                        </li>*/}
                     </ul>
                 </nav>
             </aside>
