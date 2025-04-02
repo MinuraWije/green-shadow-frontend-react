@@ -62,7 +62,7 @@ export function EquipmentPage() {
                                 </tr>
                                 </thead>
 
-                                {/*{equipments && (
+                                {equipments && (
                                     <tbody>
                                     {equipments.map((equipment: Equipment) => (
                                             <tr key={equipment.id}
@@ -76,8 +76,8 @@ export function EquipmentPage() {
                                         ))
                                     }
                                     </tbody>
-                                )}*/}
-                                <tbody>
+                                )}
+                                {/*<tbody>
                                 {equipments.map((equipment: Equipment) => (
                                     <tr key={equipment.id}
                                         className="hover:bg-gray-100 cursor-pointer border-b"
@@ -89,7 +89,7 @@ export function EquipmentPage() {
                                     </tr>
                                 ))
                                 }
-                                </tbody>
+                                </tbody>*/}
                             </table>
                         </div>
                     </div>
