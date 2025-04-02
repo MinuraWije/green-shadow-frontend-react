@@ -3,11 +3,9 @@ import {RouterProvider, createBrowserRouter, Navigate} from "react-router-dom";
 import {RootLayout} from "./components/RootLayout.tsx";
 import {Dashboard} from "./pages/Dashboard.tsx";
 import {VehiclePage} from "./pages/Vehicle.tsx";
-import {EquipmentPage} from "./pages/Equipment.tsx";
 import {LogPage} from "./pages/Log.tsx";
 import {StaffPage} from "./pages/Staff.tsx";
 import {FieldPage} from "./pages/Field.tsx";
-import {CropPage} from "./pages/Crop.tsx";
 import {useSelector} from "react-redux";
 import {Login} from "./pages/Login.tsx";
 
@@ -29,11 +27,11 @@ function App() {
             children: [
                 { path: '', element: <Dashboard /> }, // Default child route
                 { path : 'vehicle', element : <VehiclePage />},
-                { path : 'equipment', element : <EquipmentPage />},
+                /*{ path : 'equipment', element : <EquipmentPage />},*/
                 { path : 'log', element : <LogPage />},
                 { path : 'staff', element : <StaffPage />},
                 { path : 'field', element : <FieldPage />},
-                { path : 'crop', element : <CropPage />},
+                /*{ path : 'crop', element : <CropPage />},*/
             ],
         },
     ]);
